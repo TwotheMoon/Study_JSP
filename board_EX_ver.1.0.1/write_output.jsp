@@ -88,7 +88,7 @@
 	
 	<table border="0" width="700">
 		<tr>
-			<<td align="left">
+			<td align="left">
 				<a href="modify_pass.jsp?num=<%=num %>">[수정하기]</a>
 				<a href="delete_pass.jsp?num=<%=num %>">[삭제하기]</a>
 			</td>
@@ -100,9 +100,10 @@
 	</table>
 
 <%
-	strSQL = "UPDATE tableboard SET readcount-readcount+1 WHERE num = ?";
+	strSQL = "UPDATE tableboard SET readcount=readcount+1 WHERE num = ?";
 	pstmt = conn.prepareStatement(strSQL);
 	pstmt.setInt(1, Integer.parseInt(num));
+	pstmt.executeUpdate();
 		}
 		catch(SQLException e){
 			out.print("SQL에러" + e.toString());
