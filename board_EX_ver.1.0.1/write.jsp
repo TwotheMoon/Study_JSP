@@ -64,7 +64,7 @@
 		</tr>
 	</table>
 
-<form name="Write" action="write_input.jsp" method="post" onsubmit="return Check()">
+<form name="Write" action="write_input.jsp" method="post" onsubmit="return Check()" enctype="multipart/form-data">
 
 	<table border="0" width="700">
 		<tr>
@@ -78,6 +78,10 @@
 		<tr>
 			<td width="100" bgcolor="#815854"> E-mail </td>
 			<td> <input type="text" size="40" maxlength="50" name="email"></td>
+		</tr>
+		<tr>
+			<td width="100" bgcolor="#815854"> Ã·ºÎÆÄÀÏ </td>
+			<td><input type="file" name="userFile"> </td>
 		</tr>
 		<tr>
 			<td colspan="2"><hr size="1" noshade></td>

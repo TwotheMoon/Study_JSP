@@ -13,6 +13,10 @@
 		color: #F9EBDE;
 		background-color: #815854;
 	}
+	a{
+		text-decoration: none;
+		color: tomato;
+	}
 </style>
 <meta charset="EUC-KR">
 <title> 게시판 삭제 </title>

@@ -102,7 +102,7 @@ function list() {
 	<tr>
 		<td bgcolor="#815854"><b>작성자</b></td>
 		<td>
-			<p><input type="text" size="12" name="name" value="<%=name%>"> * 필수<p/>
+			<p><input type="text" size="12" name="name" value="<%=name%>" readonly="readonly"> * 필수<p/>
 		</td>
 	</tr>
 	<tr>

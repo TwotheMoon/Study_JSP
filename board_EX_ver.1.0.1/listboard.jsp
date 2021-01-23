@@ -13,6 +13,7 @@
 	body{
 		color: #F9EBDE;
 		background-color: #815854;
+		margin-top: 50px;
 	}
 	.search{
 		outline: none;
@@ -41,6 +42,7 @@ function Check() {
 <title> 게시물 목록 </title>
 </head>
 <body>
+	<center><b> 게시판 </b>
 
 	<%
 	String key = request.getParameter("key");
@@ -51,7 +53,7 @@ function Check() {
 		pageNum = "1";
 	}
 	
-	int listSize = 5;
+	int listSize = 20;
 	int currentPage = Integer.parseInt(pageNum);
 	int startRow = (currentPage - 1) * listSize + 1;
 	int endRow = currentPage * listSize;
@@ -94,10 +96,10 @@ function Check() {
 		<%
 		if(lastRow > 0){
 			if(key == null || keyword == null){
-				strSQL = "SELECT * FROM tableboard WHERE num BETWEEN " + startRow + " and " + endRow;
+				strSQL = "SELECT * FROM tableboard WHERE num BETWEEN " + startRow + " and " + endRow +" ORDER BY num DESC";
 				rs = stmt.executeQuery(strSQL);				
 			}else{
-				strSQL = "SELECT * FROM tableboard WHERE " + key + " like '%" + keyword + "%'";
+				strSQL = "SELECT * FROM tableboard WHERE " + key + " like '%" + keyword + "%' ORDER BY num DESC";
 				rs = stmt.executeQuery(strSQL);
 			}
 			

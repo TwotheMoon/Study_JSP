@@ -19,11 +19,27 @@
 		color: #F9EBDE;
 		background-color: #815854;
 	}
+	a{
+		text-decoration: none;	/* 링크 밑줄 제거 */
+		color: tomato;
+	}
+	
 </style>
 <meta charset="EUC-KR">
 <title> 게시판 </title>
 </head>
 <body>
+
+	<%!
+		// \n \r  -> <br> 게시판 글 메소드 활용해서 줄바꿈 적용
+		public String Change(String parament){
+			
+			if( parament !=null && parament !=""){
+				parament = parament.replace("\r\n" , "<br>");
+			}
+			return parament;
+		}
+	%>
 
 	<%
 		String num = request.getParameter("num");
@@ -47,6 +63,7 @@
 		String contents = rs.getString("contents").trim();
 		String writedate = rs.getString("writedate");
 		int readcount = rs.getInt("readcount");
+		String filename = rs.getString("filename");
 	%>
 	
 	<center><b>게시판</b>
@@ -55,6 +72,10 @@
 		<tr>
 			<td width="100" bgcolor="#815854"> 작성자 : <%=name %> </td>
 			<td bgcolor="#815854">작성일: <%=writedate %>, 조회수: <%=readcount %>"  </td>
+		</tr>
+		
+		<tr>
+			<td> 첨부파일 : <a href="file_down.jsp?num=<%=num%>"><%=filename %></a> </td>
 		</tr>
 	</table>
 	
@@ -66,9 +87,9 @@
 		</tr>
 	</table>
 
-	<table border="0" width="700">
+	<table border="0" width="700" style="word-break:break-all">
 		<tr>
-			<td bgcolor="#815854"><%=contents %></td>
+			<td bgcolor="#815854"><%=Change(contents) %></td>
 		</tr>
 	</table>
 	
@@ -93,6 +114,7 @@
 				<a href="delete_pass.jsp?num=<%=num %>">[삭제하기]</a>
 			</td>
 			<td align="right">
+				<a href="reply.jsp?num=<%=num %>">[답변달기]</a>
 				<a href="write.jsp">[글쓰기]</a>
 				<a href="listboard.jsp">[목록보기]</a>
 			</td>
