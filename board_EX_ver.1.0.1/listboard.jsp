@@ -14,6 +14,18 @@
 		color: #F9EBDE;
 		background-color: #815854;
 	}
+	.search{
+		outline: none;
+	}
+	.search:focus
+	{	
+		outline: none;
+	}
+	a{
+		text-decoration: none;	
+		color: tomato;
+	}
+	
 </style>
 
 <script language="javascript">
@@ -184,9 +196,9 @@ function Check() {
 				</select>
 				</TD>
 				<TD align='left'>
-					<input type='text' name='keyword' 
+					<input class="search" type='text' name='keyword' 
                                                    value='' size='20' maxlength='30'>
-					<input type='submit' value='검색'>
+					<input  type='submit' value='검색'>
 				</td>
 			  </TR>
 			  </FORM>
