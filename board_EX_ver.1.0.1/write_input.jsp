@@ -9,24 +9,20 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
  <%
- 	String realFolder = "";		// [절대경로] 실제경로
- 	String saveFolder = "filestorge";		// 업로드 할 경우 저장되는 폴더
+ 	String realFolder = "";							// [절대경로] 실제경로
+ 	String saveFolder = "filestorge";				// 업로드 할 경우 저장되는 폴더명
  	String enctype = "euc-kr";
  	
- 	int sizeLimit = 1024 * 1024 * 10; // 10MB // 업로드 파일 용량 제한
+ 	int sizeLimit = 1024 * 1024 * 10; 				// 10MB // 업로드 파일 용량 제한
  	// 서블릿 클래스
- 	ServletContext context = getServletContext();
- 	realFolder = context.getRealPath(saveFolder);
+ 	ServletContext context = getServletContext();	
+ 	realFolder = context.getRealPath(saveFolder);	// 폴더의 실제경로 구하기	
  	
  	MultipartRequest multi = 
  			new MultipartRequest(request , realFolder , sizeLimit , enctype , new DefaultFileRenamePolicy() );
- 	
- 	String filename = multi.getFilesystemName("userFile");
- 	String originfilename = multi.getOriginalFileName("userFile");
- 	
- 	File file = multi.getFile("userFile");
- 	
- 
+ 							  // 요청방식     저장경로       용량제한      인코딩타입        보안방식 
+ 	String filename = multi.getFilesystemName("userFile");	// DB에 저장되는 파일명	
+ 	File file = multi.getFile("userFile");	// 실제 파일
  
  request.setCharacterEncoding("euc-kr"); %>
  

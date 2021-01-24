@@ -17,7 +17,7 @@
 <body>
 
 	<%
-	request.setCharacterEncoding("euc-kr");
+
 	
 	int num = Integer.parseInt(request.getParameter("num"));
 	Class.forName("com.mysql.cj.jdbc.Driver");
@@ -33,17 +33,17 @@
 	rs.next();
 	
 	String filename = rs.getString("filename");
-	String filename2 = new String(filename.getBytes("KSC5601") , "8859_1");
+	String filename2 = new String(filename.getBytes("KSC5601") , "8859_1"); // 파일이름 바이트형 변환
 	
-	File file = new File("C:/Users/2theMoon/eclipse-jsp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/jsp6/filestorge" + filename);
+	File file = new File("C:/Users/2theMoon/eclipse-jsp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/jsp6/filestorge/" + filename);
+						// DB에 저장된 파일 클래스화
+	byte by[] = new byte[ (int)file.length()]; // 파일용량 [코드의 길이]
 	
-	byte by[] = new byte[ (int)file.length()];
-	
-	response.setHeader("Content-Disposition" , "attachment;filename=" +filename2+";");
+	response.setHeader("Content-Disposition" , "attachment;filename=" +filename2+";");	// 한글파일 인코딩
 	
 	if(file.isFile() ){ // 파일이 존재하면
-		BufferedInputStream fin = new BufferedInputStream(new FileInputStream(file));
-		BufferedOutputStream outs = new BufferedOutputStream(response.getOutputStream());
+		BufferedInputStream fin = new BufferedInputStream(new FileInputStream(file));		// 입력 스트림
+		BufferedOutputStream outs = new BufferedOutputStream(response.getOutputStream());	// 출력 스트림
 		
 		int read = 0;
 		

@@ -25,6 +25,7 @@
 	}
 	
 </style>
+
 <meta charset="EUC-KR">
 <title> 게시판 </title>
 </head>
@@ -133,15 +134,66 @@
 		catch(Exception ex){
 			out.print("jsp에러" + ex.toString());
 		}
-		finally{
+
+%>
+<script language="javascript">
+	function check() {
+		if(plus.plus_name.value.length < 1){
+			alert("작성자 입력해주세요.");
+			plus.plus_name.focus();
+			return false;
+		}
+		if(plus.plus-contents.value.length < 1){
+			alert("댓글 내용을 입력해주세요");
+			plus.plus_contents.focus();
+			return false;
+		}
+
+	}
+</script>
+<p>
+<p>
+
+<form name="plus" action="plus_input.jsp" method="post" onsubmit="return check()">
+	<input type="hidden" name="num" value="<%=num%>">
+	<table width="700">
+		<tr>
+			<td width="200"> 작성자</td>
+			<td> <input type="text" name="plus_name" size="12" maxlength="5"> </td>
+		</tr>
+		<tr>
+			<td>댓글</td>
+			<td><input type="text" name="plus_contents" size="60"></td>
+			<td><input type="submit" value="댓글등록"></td>
+		</tr>
+	</table>
+</form>
+
+<p>
+<p>
+
+	<%
+		String strSQL = "SELECT * FROM plus where id = " + num;
+		
+		pstmt = conn.prepareStatement(strSQL);
+		rs = pstmt.executeQuery();
+		
+		while ( rs.next() ){
+	%>
+	<table width="700">
+		<tr>
+			<td align="left" width="100"> <%=rs.getString("name") %> </td>
+			<td align="left" width="300"> <%=rs.getString("contents") %> </td>
+			<td align="right"> <%=rs.getString("writedate") %> </td>
+		</tr>
+	</table>
+	
+	<% 
+		}
 			rs.close();
 			pstmt.close();
 			conn.close();
-		}
-
-
-%>
-
-
+				
+	%>
 </body>
 </html>
