@@ -65,7 +65,7 @@
 							aria-expanded="false">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="logout.jsp">로그아웃</a></li>
-							<li class="active"><a href="Userdata.jsp">회원정보</li>
+							<li class="active"><a href="Userdata.jsp">회원정보</a></li>
 						</ul>
 					</li>
 				</ul>

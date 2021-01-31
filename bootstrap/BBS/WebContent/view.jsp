@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -18,12 +19,27 @@
 	if(session.getAttribute("userID") !=null){ // 로그인 되어있는경우
 		userID = (String)session.getAttribute("userID");
 	}
-	/////////////////////////////////////////////////////////////////////
 	
-	int pagenumber = 1; // 1페이지
-	if(request.getParameter("pagenumber") != null){	// 페이지 요청값이 있으면
-		pagenumber = Integer.parseInt(request.getParameter("pagenumber"));
+	int bbsID = 0;
+	
+	if(request.getParameter("bbsID") != null){
+		
+		bbsID = Integer.parseInt(request.getParameter("bbsID")); 
+		// 개시물 번호 요청
 	}
+	if(bbsID == 0){
+		
+		PrintWriter script = response.getWriter();
+		script.print("<script>");
+		script.print("alert('존재하지 않는 게시물입니다.');");
+		script.print("location.href='bbs.jsp'");
+		script.print("</script>");
+		
+	}
+
+	Bbs bbs  = new BbsDAO().getbbs(bbsID);	// 검색결과
+	
+	
 	%>
 
 	<nav class="navbar navbar-default">	<%// 메뉴바 선언 %>
@@ -87,50 +103,35 @@
 	
 	<div class="container">
 		<div>
-			<table class="table table-striped" style="text-align: center; border: 1px">
+			<table class="table table-striped" style="text-align: center; border: 1px solid wheat;">
 							<% // table-striped 행마다 색상 구분 %>
 				<thead>	<% // 테이블 제목 %>
 					<tr>
-						<th style="background-color: wheat; text-align: center;">번호</th>
-						<th style="background-color: wheat; text-align: center;">제목</th>
-						<th style="background-color: wheat; text-align: center;">작성자</th>
-						<th style="background-color: wheat; text-align: center;">작성일</th>
+						<th colspan="3" style="background-color: wheat; text-align: center;">게시물 보기</th>
+						
 					</tr>
 				</thead>
 				
 				<tbody>
-				
-				<%
-					BbsDAO bbsDao = new BbsDAO();
-					ArrayList<Bbs> list = bbsDao.getlist(pagenumber);
-					
-					for( int i = 0 ; i <list.size(); i++){
-				%>
 					<tr>
-						<td><%=list.get(i).getBbsID() %></td>
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle() %></a></td>
-						<td><%=list.get(i).getBbsuserID() %></td>
-						<td><%=list.get(i).getBbsData().substring(0,11) %></td>
+						<td> 글 제목</td>
+						<td colspan="2"><%=bbs.getBbsTitle() %></td>
 					</tr>
-				<%
-					}
-				%>
+					<tr>
+						<td> 작성자</td>
+						<td colspan="2"><%=bbs.getBbsuserID() %></td>
+					</tr>
+					<tr>
+						<td> 작성일</td>
+						<td colspan="2"><%=bbs.getBbsData() %></td>
+					</tr>
+					<tr>
+						<td> 내용</td>
+						<td colspan="2" style="min-height: 300px; text-align: left;"><%=bbs.getBbsContents().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+					</tr>
 				</tbody>
 			</table>
-			<%
-			
-				if(pagenumber !=1){ // 1페이지 아니면
-			%>		
-					<a href="bbs.jsp?pagenumber=<%=pagenumber-1 %>"class="btn btn-success btn-arraw-left" > 이전 </a>
-			<% 
-				}
-				if(bbsDao.nextpage(pagenumber +1)){	// 다음 페이지가 존재하면
-			%>		
-					<a href="bbs.jsp?pagenumber=<%=pagenumber+1 %>"class="btn btn-success btn-arraw-left" > 다음 </a>		
-			<% 	
-				}
-			%>
-			<a href="write.jsp" class="btn btn-primary pull-right">글작성</a>
+	
 		</div>
 	
 	</div>

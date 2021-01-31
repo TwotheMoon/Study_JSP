@@ -1,4 +1,4 @@
-package Bbs;
+package bbs;
 
 public class Bbs {
 
@@ -8,6 +8,8 @@ public class Bbs {
 	private String bbsuserID;
 	private String bbsData;
 	private int bbsAvailable;
+	
+	
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -46,5 +48,4 @@ public class Bbs {
 	}
 	
 }
-	// 메소드 변수 입출력
 	

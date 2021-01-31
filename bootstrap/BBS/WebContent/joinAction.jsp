@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
     <%@ page import="USER.*" %>
     <%@ page import="java.io.*" %>
-    
+    <%request.setCharacterEncoding("UTF-8"); %>
     <jsp:useBean id="user" class="USER.User"></jsp:useBean>
     <jsp:setProperty property="userID" name="user"/>
     <jsp:setProperty property="userPassword" name="user"/>
