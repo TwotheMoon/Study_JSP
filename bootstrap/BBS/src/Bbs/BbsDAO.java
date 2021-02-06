@@ -71,8 +71,8 @@ public class BbsDAO {
 		
 		
 	// 게시물 등록
-	public int write( String bbsTitle , String bbsContents, String bbsuserID) {
-		String SQL = "insert into bbsboard values(?,?,?,?,?,?)";
+	public int write( String bbsTitle , String bbsContents, String bbsuserID , String File) {
+		String SQL = "insert into bbsboard values(?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getnext());
@@ -81,7 +81,7 @@ public class BbsDAO {
 			pstmt.setString(4, bbsuserID);
 			pstmt.setString(5, getdate());
 			pstmt.setInt(6, 1);	// 게시물 여부 // 사용 = 1 // 불가 = 0
-			
+			pstmt.setString(7, File);
 			pstmt.executeUpdate();
 			return 1;
 		}
@@ -166,6 +166,7 @@ public class BbsDAO {
 				bbs.setBbsuserID(rs.getString(4));
 				bbs.setBbsData(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setBbsFile(rs.getString(7));
 				return bbs;		
 			}
 			
@@ -176,5 +177,47 @@ public class BbsDAO {
 		
 		
 	}
+	
+	// 게시물 수정
+	public int update( String bbsTitle, String bbsContents ,int bbsID) {
+		
+		String SQL = "UPDATE bbsboard set bbsTitle=? , bbsContents=? where bbsID =?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContents);
+			pstmt.setInt(3, bbsID);
+			pstmt.executeUpdate();
+			return 1;	// 업데이트 성공
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		return -1;	// db오류 업데이트 실패
+	}
+	
+	
+	// 게시물 삭제
+	public int delete(int bbsID) {
+		
+		String SQL = "UPDATE bbsboard set bbsAvailable=0 where bbsID=?";
+		
+	try {
+		PreparedStatement pstmt = conn.prepareStatement(SQL);
+		
+		pstmt.setInt(1, bbsID);
+		pstmt.executeUpdate();
+		
+		return 1;
+		}
+	catch (Exception e) {
+		// TODO: handle exception
+	}
+	 return -1;
+	}
+	
+	
 	
 }

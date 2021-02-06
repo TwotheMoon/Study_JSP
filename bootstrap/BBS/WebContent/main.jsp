@@ -65,7 +65,7 @@
 							aria-expanded="false">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="logout.jsp">로그아웃</a></li>
-							<li class="active"><a href="Userdata.jsp">회원정보</li>
+							<li class="active"><a href="Userdata.jsp">회원정보</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -75,6 +75,36 @@
 			
 		</div>
 	</nav>	<%// 메뉴바 끝 %>
+	
+	<div class="container">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+														<%// 사진이 넘어가는 시간 : 밀리초 %>
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1" ></li>
+				<li data-target="#myCarousel" data-slide-to="2" ></li>
+			</ol>
+				<div class="carousel-inner"> <%// 사진 첨부 %>
+					<div class="item active" >
+						<img src="images/bg1.jpg" >
+					</div>
+					<div class="item ">
+						<img src="images/bg2.jpg" >
+					</div>
+					<div class="item ">
+						<img src="images/bg3.png" >
+					</div>
+				</div>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" ></span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" ></span>
+			</a>
+		
+		</div>
+	</div>
+	
 	
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

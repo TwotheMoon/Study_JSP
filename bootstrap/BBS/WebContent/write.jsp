@@ -79,7 +79,7 @@
 	
 	<div class="container">
 		<div>
-		<form method="post" action="writeAction.jsp">
+		<form method="post" action="writeAction.jsp" enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align: center; border: 1px">
 							<% // table-striped 행마다 색상 구분 %>
 				<thead>	<% // 테이블 제목 %>
@@ -97,6 +97,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<input type="file" name="bbsFile">
 			<input type="submit" value="등록" class="btn btn-primary pull-right">
 	</form>
 		</div>

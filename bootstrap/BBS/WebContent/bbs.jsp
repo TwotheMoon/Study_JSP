@@ -108,7 +108,7 @@
 				%>
 					<tr>
 						<td><%=list.get(i).getBbsID() %></td>
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle() %></a></td>
+						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle() %></a> </td>
 						<td><%=list.get(i).getBbsuserID() %></td>
 						<td><%=list.get(i).getBbsData().substring(0,11) %></td>
 					</tr>

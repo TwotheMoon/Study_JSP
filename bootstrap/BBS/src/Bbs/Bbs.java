@@ -8,7 +8,7 @@ public class Bbs {
 	private String bbsuserID;
 	private String bbsData;
 	private int bbsAvailable;
-	
+	private String bbsFile;
 	
 	public int getBbsID() {
 		return bbsID;
@@ -46,6 +46,15 @@ public class Bbs {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
-	
+	public String getBbsFile() {
+		return bbsFile;
+	}
+	public void setBbsFile(String bbsFile) {
+		this.bbsFile = bbsFile;
+	}
 }
+
+	
+	
+	
 	

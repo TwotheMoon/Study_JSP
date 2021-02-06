@@ -1,12 +1,11 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <%@ page import="bbs.*"%>
     <%@ page import="java.io.*" %>
     <%request.setCharacterEncoding("UTF-8"); %>
-    <jsp:useBean id="Bbs" class="bbs.Bbs"></jsp:useBean>
-    <jsp:setProperty property="bbsTitle" name="Bbs"/>
-    <jsp:setProperty property="bbsContents" name="Bbs"/>
     
 <!DOCTYPE html>
 <html>
@@ -30,10 +29,26 @@
 			script.print("</script>");
 		}
 		else{	// 세션이 있는경우
+		// 서버 저장				 
+		// 파일 저장할 폴더 
+		ServletContext context = getServletContext();
+		String realFolder = context.getRealPath("upload");	 // 폴더 이름
+		
+		// 파일 서버에 저장
+		MultipartRequest multi = new MultipartRequest(request , realFolder ,1024*1024*10 , "UTF-8" , new DefaultFileRenamePolicy());
+		//	MultipartRequest multi = new MultipartRequest ( 요청방식, 저장위치 , 용량 , 인코딩 타입 , 보안방식);
+	
+		// DB
+		String bbsTitle = multi.getParameter("bbsTitle");
+		// 전 페이지의 form 이 multipart로 번경		
+		String bbsContents = multi.getParameter("bbsContents");
+		String bbsFile = multi.getFilesystemName("bbsFile");
+						// 파일명 요청 : getFilesystemName
+			
 			
 		BbsDAO bbsDAO = new BbsDAO();
 		
-		if(Bbs.getBbsTitle() == null || Bbs.getBbsContents() == null){
+		if(bbsTitle.equals(null) || bbsTitle.equals(null)){
 			PrintWriter script = response.getWriter();
 			script.print("<script>");
 			script.print("alert('입력이 안된 사항이 있습니다');"); // 오류 메세지
@@ -41,7 +56,7 @@
 			script.print("</script>");
 		}else{
 			
-		int result = bbsDAO.write(Bbs.getBbsTitle(), Bbs.getBbsContents() ,userID);
+		int result = bbsDAO.write(bbsTitle, bbsContents , userID , bbsFile);
 		if( result == 1){	// 글 작성 성공
 			
 			
@@ -64,9 +79,5 @@
 	
 	%>
 
-	<%
-	
-	
-	%>
 </body>
 </html>

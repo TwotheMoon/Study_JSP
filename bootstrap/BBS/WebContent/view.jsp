@@ -125,12 +125,34 @@
 						<td> 작성일</td>
 						<td colspan="2"><%=bbs.getBbsData() %></td>
 					</tr>
+					<% 
+					 	if(bbs.getBbsFile() !=null){
+					%>
+					 <tr>
+						<td> 첨부파일</td>
+						<td colspan="2"><a href="filedown.jsp?bbsFile=<%=bbs.getBbsFile() %>"> <%=bbs.getBbsFile() %></a></td>
+					</tr>
+					<% 				 		
+					 	}
+					%>
 					<tr>
 						<td> 내용</td>
 						<td colspan="2" style="min-height: 300px; text-align: left;"><%=bbs.getBbsContents().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
 					</tr>
+					
 				</tbody>
 			</table>
+			
+			<a href="bbs.jsp" class="btn btn-primary"> 목록 </a>
+			
+			<%	// 세션 [로그인] 있고 세션과 게시물 id가 동일할 경우
+				if(userID !=null && userID.equals(bbs.getBbsuserID())){
+			%>
+			<a href="update.jsp?bbsID=<%=bbs.getBbsID() %>" class="btn btn-primary"> 수정 </a>
+			<a href="deleteAction.jsp?bbsID=<%=bbs.getBbsID() %>" class="btn btn-primary"> 삭제 </a>			
+			<% 
+				}
+			%>
 	
 		</div>
 	
