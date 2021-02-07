@@ -1,5 +1,10 @@
+<%@page import="USER.UserDAO"%>
+<%@page import="USER.User"%>
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +20,7 @@
 	if(session.getAttribute("userID") !=null){ // 로그인 되어있는경우
 		userID = (String)session.getAttribute("userID");
 	}
-
+	User user = new UserDAO().userInfo(userID);
 	%>
 
 	<nav class="navbar navbar-default">	<%// 메뉴바 선언 %>
@@ -39,25 +44,7 @@
 			
 			<%/////////////////////////////////////////////////////////////////////////// %>
 			
-			<%
-				if( userID == null){	// 세션이 없을경우
-			%>	
-					<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">로그인<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="login.jsp">로그인</a></li>
-							<li class="active"><a href="join.jsp">회원가입</a></li>
-						</ul>
-					</li>
-				</ul>
-					
-			<% 
-				}
-				else{		// 세션이 있을경우
-			%>		
+	
 					<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle"
@@ -65,47 +52,56 @@
 							aria-expanded="false">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="logout.jsp">로그아웃</a></li>
-							<li class="active"><a href="userdata.jsp">회원정보</a></li>
+							<li class="active"><a href="Userdata.jsp">회원정보</a></li>
 						</ul>
 					</li>
 				</ul>
-			<%		
-				}
-			%>
-			
 		</div>
 	</nav>	<%// 메뉴바 끝 %>
+	<%/////////////////////////////////////////////////////////////////////////// %>
 	
 	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-														<%// 사진이 넘어가는 시간 : 밀리초 %>
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1" ></li>
-				<li data-target="#myCarousel" data-slide-to="2" ></li>
-			</ol>
-				<div class="carousel-inner"> <%// 사진 첨부 %>
-					<div class="item active" >
-						<img src="images/bg1.jpg" >
-					</div>
-					<div class="item ">
-						<img src="images/bg2.jpg" >
-					</div>
-					<div class="item ">
-						<img src="images/bg3.png" >
-					</div>
-				</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" ></span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" ></span>
-			</a>
-		
+		<div>
+		<form method="post" action="modify_output.jsp">
+			<table class="table table-striped" style="text-align: center; border: 1px solid wheat;">
+							<% // table-striped 행마다 색상 구분 %>
+				<thead>	<% // 테이블 제목 %>
+					<tr>
+						<th colspan="3" style="background-color: wheat; text-align: center;">회원정보 수정</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td> 아이디 </td>
+						<td> <%=user.getUserID() %> </td>
+					</tr>
+					<tr>
+						<td> 비밀번호 </td>
+						<td> <%=user.getUserPassword() %> </td>	
+					</tr>
+					<tr>
+						<td> 이름 </td>
+						<td><input type="text" name="userNameModify"> </td>
+					</tr>
+					<tr>
+						<td> 성별 </td>
+						<td>
+							<input type="radio" value="남자" name="userGenderModify" checked> 남자
+							<input type="radio" value="남자" name="userGenderModify"> 여자
+						</td>
+					</tr>
+					<tr>
+						<td> 이메일 </td>
+						<td><input type="email" name="userEmailModify"> </td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="submit" value="회원정보 수정" class="btn btn-primary pull-right">
+		</form>
 		</div>
+	
 	</div>
-	
-	
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

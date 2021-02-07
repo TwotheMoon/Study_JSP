@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page import="bbs.*" %>
+    <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +18,12 @@
 	if(session.getAttribute("userID") !=null){ // 로그인 되어있는경우
 		userID = (String)session.getAttribute("userID");
 	}
-
+	/////////////////////////////////////////////////////////////////////
+	
+	int pagenumber = 1; // 1페이지
+	if(request.getParameter("pagenumber") != null){	// 페이지 요청값이 있으면
+		pagenumber = Integer.parseInt(request.getParameter("pagenumber"));
+	}
 	%>
 
 	<nav class="navbar navbar-default">	<%// 메뉴바 선언 %>
@@ -75,37 +83,58 @@
 			
 		</div>
 	</nav>	<%// 메뉴바 끝 %>
+	<%/////////////////////////////////////////////////////////////////////////// %>
 	
 	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-														<%// 사진이 넘어가는 시간 : 밀리초 %>
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1" ></li>
-				<li data-target="#myCarousel" data-slide-to="2" ></li>
-			</ol>
-				<div class="carousel-inner"> <%// 사진 첨부 %>
-					<div class="item active" >
-						<img src="images/bg1.jpg" >
-					</div>
-					<div class="item ">
-						<img src="images/bg2.jpg" >
-					</div>
-					<div class="item ">
-						<img src="images/bg3.png" >
-					</div>
-				</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" ></span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" ></span>
-			</a>
-		
+		<div>
+			<table class="table table-striped" style="text-align: center; border: 1px">
+							<% // table-striped 행마다 색상 구분 %>
+				<thead>	<% // 테이블 제목 %>
+					<tr>
+						<th style="background-color: wheat; text-align: center;">번호</th>
+						<th style="background-color: wheat; text-align: center;">제목</th>
+						<th style="background-color: wheat; text-align: center;">작성자</th>
+						<th style="background-color: wheat; text-align: center;">작성일</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+				
+				<%
+					BbsDAO bbsDao = new BbsDAO();
+					ArrayList<Bbs> list = bbsDao.getMylist(pagenumber);
+					
+					for( int i = 0 ; i <list.size(); i++){
+					
+				%>
+					<tr>
+						<td><%=list.get(i).getBbsuserID() %></td>
+						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle() %></a> </td>
+						<td><%=list.get(i).getBbsuserID() %></td>
+						<td><%=list.get(i).getBbsData().substring(0,11) %></td>
+					</tr>
+				<%
+					}
+				%>
+				</tbody>
+			</table>
+			<%
+			
+				if(pagenumber !=1){ // 1페이지 아니면
+			%>		
+					<a href="bbs.jsp?pagenumber=<%=pagenumber-1 %>"class="btn btn-success btn-arraw-left" > 이전 </a>
+			<% 
+				}
+				if(bbsDao.nextpage(pagenumber +1)){	// 다음 페이지가 존재하면
+			%>		
+					<a href="bbs.jsp?pagenumber=<%=pagenumber+1 %>"class="btn btn-success btn-arraw-left" > 다음 </a>		
+			<% 	
+				}
+			%>
+			<a href="write.jsp" class="btn btn-primary pull-right">글작성</a>
 		</div>
+	
 	</div>
-	
-	
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>

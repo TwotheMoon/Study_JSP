@@ -95,7 +95,7 @@ public class BbsDAO {
 	public ArrayList<Bbs> getlist( int pagenumber) {
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		
-		String SQL = "select * from bbsboard where bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		String SQL = "select * from bbsboard where and bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -148,7 +148,7 @@ public class BbsDAO {
 		return false;	// 페이지 없으면	// 쿼리 결과에 음수 나오면
 	}
 	
-	// 게시물 번호에 해당하는 데이터 검색
+	// 게시물 번호에 해당하는 데이터 출력
 	public Bbs getbbs(int bbsID) {
 		
 		String SQL = "SELECT * from bbsboard where bbsID = ?";
@@ -219,5 +219,37 @@ public class BbsDAO {
 	}
 	
 	
-	
+	// 내가쓴글 메소드 
+	// 게시물 목록보기 => 모든 게시물 검색 => Arraylist
+		public ArrayList<Bbs> getMylist( int pagenumber) {
+			ArrayList<Bbs> list = new ArrayList<Bbs>();
+			
+			String SQL = "select * from bbsboard where userID=? and bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+			
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				
+				pstmt.setInt(1, getnext() - (pagenumber -1) * 10);
+				
+				rs = pstmt.executeQuery();
+			
+				while(rs.next()) {	// 모든 쿼리 실행
+					
+					Bbs bbs = new Bbs();	// 게시물 객체
+					bbs.setBbsID(rs.getInt(1));
+					bbs.setBbsTitle(rs.getString(2));
+					bbs.setBbsContents(rs.getString(3));
+					bbs.setBbsuserID(rs.getString(4));
+					bbs.setBbsData(rs.getString(5));
+					bbs.setBbsAvailable(rs.getInt(6));
+				
+					list.add(bbs);	// list => 주소값 주소값 ...
+				}
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			return list;
+		}
 }

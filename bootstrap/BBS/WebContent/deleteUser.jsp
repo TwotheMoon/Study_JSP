@@ -1,3 +1,5 @@
+<%@page import="USER.UserDAO"%>
+<%@page import="USER.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -11,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>회원탈퇴</title>
 </head>
 <body>
 
@@ -26,36 +28,32 @@
 			
 			PrintWriter script = response.getWriter();
 			script.print("<script>");
-			script.print("alert('로그인후 작성해주세요.');"); // 오류 메세지
+			script.print("alert('로그인 해주세요.');"); // 오류 메세지
 			script.print("location.href='login.jsp'");	// 전 페이지로 반환
 			script.print("</script>");
 		}
 		
-		int bbsID = 0;
 		
-		if(request.getParameter("bbsID") !=null){
-			bbsID = Integer.parseInt(request.getParameter("bbsID"));
-		}
-		
-			// 세션이 있는경우
-		BbsDAO bbsDao = new BbsDAO();
+			// 세션이 있는경우 삭제 실행
+		UserDAO userDAO = new UserDAO();
 			
-			int result = bbsDao.delete(bbsID);
-
-			if(result == 1){	// 업데이트 성공
-			PrintWriter script = response.getWriter();
-				script.print("<script>");
-				script.print("location.href ='bbs.jsp'");
-				script.print("</script>");
-			}
-			if(result == -1){	// 업데이트 실패
+			int result = userDAO.deleteUser(userID);
+			
+			if( result == 1){	// 유저 정보 삭제
 				PrintWriter script = response.getWriter();
-				script.print("<script>");
-				script.print("alert('글 삭제 실패');"); // 오류 메세지
-				script.print("history.back()");	// 전 페이지로 반환
-				script.print("</script>");
-				}
+					script.print("<script>");
+					script.print("location.href = 'login.jsp'");
+					script.print("</script>");
+			}
+			if( result == -1){	// 유저 정보 실패
+				PrintWriter script = response.getWriter();
+					script.print("<script>");
+					script.print("alert('회원탈퇴 실패')");
+					script.print("history.back()");
+					script.print("</script>");
+			}
 			
+
 	%>
 </body>
 </html>

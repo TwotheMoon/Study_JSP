@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
 public class UserDAO {
 
 		private Connection conn;
@@ -72,4 +71,73 @@ public class UserDAO {
 	return -1; // db오류 // 중복 데이터
 	}
 	
+	
+	// 회원정보 출력 메소드
+	public User userInfo(String userID) {
+		
+		String SQL = "SELECT * from user where userID = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserGender(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				return user;
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
+	// 회원정보 삭제 메소드
+	public int deleteUser( String userID) {
+		
+		String SQL = "DELETE FROM user where userID = ?";
+		
+		try {
+		PreparedStatement pstmt = conn.prepareStatement(SQL);
+		pstmt.setString(1, userID);
+		pstmt.executeUpdate();
+		
+		return 1;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		return -1;
+	}
+
+	// 회원정보 수정 메소드
+	public int update( String userName, String userGender, String userEmail ,String userID) {
+		
+		String SQL = "UPDATE user SET userName=? , userGender=? , userEmail=? where userID =?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			
+			
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userGender);
+			pstmt.setString(3, userEmail);
+			pstmt.setString(4, userID);
+			pstmt.executeUpdate();
+			return 1;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		return -1;
+		
+	}
+
+
 }
