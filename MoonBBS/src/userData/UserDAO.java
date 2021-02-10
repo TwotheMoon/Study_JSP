@@ -95,6 +95,39 @@ public class UserDAO {
 	} // userInfo END
 
 	
+	// 회원정보 삭제 메소드
+	public int deleteUser(String userID) {
+		String SQL = "DELETE FROM user WHERE userID = ? ";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			pstmt.executeUpdate();
+		return 1;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	} //deleteUser END
+	
+	
+	// 회원정보 수정 메소드
+	public int updateUser( String userName, String userGender, String userEmail , String userID) 
+	{
+		String SQL = "UPDATE user SET userName=? , userGender=? , userEmail=? WHERE userID=?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userGender);
+			pstmt.setString(3, userEmail);
+			pstmt.setString(4, userID);
+			pstmt.executeUpdate();
+			return 1;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}	// updateUser END
 	
 	
 	

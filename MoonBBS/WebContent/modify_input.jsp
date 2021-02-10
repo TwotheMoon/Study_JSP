@@ -7,17 +7,16 @@
 <meta http-equiv="content-Type" content="text/html; charset = UTF-8">		<%// html 페이지 속성 %>
 <meta name="viewport" content="width=device-width" , initial-scale = "1">	<%// 반응형 웹 만들기위해 %>
 <link rel="stylesheet" href="css/bootstrap.css">	<%// 스타일시트(부트스트랩) 링크 %>
-<title>회원정보</title>
+<title> 회원정보 수정 </title>
 </head>
 <body>
-	<%
-		String userID = null;
-	if(session.getAttribute("userID") != null);
-		userID = (String)session.getAttribute("userID");
-	
+<%
+	String userID = null;
+	if(session.getAttribute("userID") != null){
+		userID = (String)session.getAttribute("userID");		
+	}
 		User user = new UserDAO().userInfo(userID);
-	%>
-	
+%>
 	<nav class="navbar navbar-default">	<%// 메뉴바 선언 %>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -49,50 +48,49 @@
 			</ul>
 		</div>
 	</nav>	<%// 메뉴바 끝 %>
-	
 	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4">
-			<div class="jumbotron" style="padding-top: 20px;">
+		<div>
+		<form method="post" action="modify_output.jsp">
+			<table class="table table-striped" style="text-align: center; border: 1px solid wheat;">
+							<% // table-striped 행마다 색상 구분 %>
+				<thead>	<% // 테이블 제목 %>
+					<tr>
+						<th colspan="3" style="background-color: wheat; text-align: center;">회원정보 수정</th>
+					</tr>
+				</thead>
 				
-				<form method="post" action="joinAction.jsp">
-					<h3 style="text-align: center">회원정보</h3>
-					
-					<div class="form-group">
-						<span> 아이디 : </span> 
-						<span><%=user.getUserID()%></span>	
-					</div>
-					<div class="form-group">
-						<span> 비밀번호 : </span> 
-						<span><%=user.getUserPassword()%></span>
-					</div>
-					<div class="form-group">
-						<span> 이름 : </span> 
-						<span><%=user.getUserName()%></span>	
-					</div>					<%// 부트스트랩 클래스 %>
-					<div class="form-group">
-						<span> 성별 : </span> 
-						<span><%=user.getUserGender()%></span>
-					</div>	
-					<div class="form-group">
-						<span> 이메일 : </span> 
-						<span><%=user.getUserEmail()%></span>	
-					</div>			
-						<a href="deleteUserConfirm.jsp" >
-							<input type="button" value="회원탈퇴" class="btn btn-primary form-control">
-						</a>
-					
-						<a href="modify_input.jsp" >	
-							<input type="button" value="회원정보수정" class="btn btn-primary form-control">
-						</a>
-						<a href="myWrite.jsp" >	
-							<input type="button" value="내가쓴글" class="btn btn-primary form-control">
-						</a>
-				</form>
-			</div>
+				<tbody>
+					<tr>
+						<td> 아이디 : </td>
+						<td> <%=user.getUserID() %> </td>
+					</tr>
+					<tr>
+						<td> 비밀번호 : </td>
+						<td> <%=user.getUserPassword() %> </td>	
+					</tr>
+					<tr>
+						<td> 이름 : </td>
+						<td><input type="text" name="userNameModify"> </td>
+					</tr>
+					<tr>
+						<td> 성별 : </td>
+						<td>
+							<input type="radio" value="남자" name="userGenderModify" checked> 남자
+							<input type="radio" value="남자" name="userGenderModify"> 여자
+						</td>
+					</tr>
+					<tr>
+						<td> 이메일 : </td>
+						<td><input type="email" name="userEmailModify"> </td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="submit" value="회원정보 수정" class="btn btn-primary pull-right">
+		</form>
 		</div>
-	</div> 
-		<div class="col-lg-4"></div>
+	
+	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

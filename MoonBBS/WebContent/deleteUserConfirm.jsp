@@ -1,13 +1,14 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="userData.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-Type" content="text/html; charset = UTF-8">
-<meta name="viewport" content="Width=device-width" , initial-scale = "1">
-<link rel="stylesheet" href="css/bootstrap.css">
-
-<title> 메인 </title>
+<meta http-equiv="content-Type" content="text/html; charset = UTF-8">		<%// html 페이지 속성 %>
+<meta name="viewport" content="width=device-width" , initial-scale = "1">	<%// 반응형 웹 만들기위해 %>
+<link rel="stylesheet" href="css/bootstrap.css">	<%// 스타일시트(부트스트랩) 링크 %>
+<title>회원탈퇴 하시겠습니까?</title>
 </head>
 <body>
 
@@ -71,38 +72,30 @@
 	%>
 		</div>
 	</nav>	<%// 메뉴바 끝 %>
-	
+
 	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-														<%// 사진이 넘어가는 시간 : 밀리초 %>
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1" ></li>
-				<li data-target="#myCarousel" data-slide-to="2" ></li>
-			</ol>
-				<div class="carousel-inner"> <%// 사진 첨부 %>
-					<div class="item active" >
-						<img src="images/bg1.jpg" >
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<div class="jumbotron" style="padding-top: 20px;">
+				<form action="deleteUser.jsp">
+					<h3 style="text-align: center;"> 회원탈퇴 </h3>
+					<div class="form-group" style="text-align: center;" >
+						<span> 정말로 탈퇴하시겠습니까? </span>
 					</div>
-					<div class="item ">
-						<img src="images/bg2.jpg" >
+					<div style="text-align: center;">
+						<a href="userData.jsp">
+							<input type="button" value="아니요" class="btn btn-primary">
+						</a>
+						<a href="deleteUser.jsp">
+							<input type="button" value="예" class="btn btn-primary">
+						</a>
 					</div>
-					<div class="item ">
-						<img src="images/bg3.png" >
-					</div>
-				</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" ></span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" ></span>
-			</a>
-		
+				</form>
+			</div>		
 		</div>
 	</div>
-	
-	
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
 </html>
