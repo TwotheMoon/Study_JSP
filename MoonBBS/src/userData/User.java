@@ -6,7 +6,8 @@ public class User {
 	private String userPassword;
 	private String userName;
 	private String userGender;
-	
+	private String userEmail;
+	private int manager;
 	
 	public String getUserID() {
 		return userID;
@@ -38,6 +39,15 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	private String userEmail;
-
+	public int getManager() {
+		return manager;
+	}
+	public void setManager(int manager) {
+		this.manager = manager;
+	}
+	
+	
+	
+	
+	
 }
