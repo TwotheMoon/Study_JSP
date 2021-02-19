@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 
 public class BbsDAO {
 
@@ -81,9 +83,55 @@ public class BbsDAO {
 		return -1;
 	}
 	
+
+	// 게시물 목록보기
+	public ArrayList<Bbs> getList(int pagenumber){
+		ArrayList<Bbs> list = new ArrayList<Bbs>();
+		
+		String SQL = "SELECT * FROM bbs WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getBbsNum() - (pagenumber - 1) * 10);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setBbsContents(rs.getString(3));
+				bbs.setBbsuserID(rs.getString(4));
+				bbs.setBbsDate(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				
+				list.add(bbs);
+			}			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
-	
+	// 다음 페이지 여부 확인 메소드
+	public boolean nextpage(int pagenumber) {
+		String SQL = "SELECT * FROM bbs WHERE bbsID < ? AND bbsAvailable =1";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getBbsNum() - (pagenumber-1) * 10);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return true;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	
 	

@@ -18,6 +18,11 @@
 	if(session.getAttribute("userID") != null){
 		userID = (String)session.getAttribute("userID");	
 	}
+	
+	int pagenumber = 1;
+	if(request.getParameter("pagenumber") != null){
+		pagenumber = Integer.parseInt(request.getParameter("pagenumber"));
+	}
 	%>
 	<nav class="navbar navbar-default">	<%// 메뉴바 선언 %>
 			<div class="navbar-header">
@@ -93,9 +98,36 @@
 					<tbody>
 					<% 
 						BbsDAO bbsDao = new BbsDAO();
+						ArrayList<Bbs> list = bbsDao.getList(pagenumber);
+						
+						for(int i = 0; i < list.size(); i++){
+					%>
+						<tr>
+							<td><%=list.get(i).getBbsID() %></td>
+							<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID() %>"><%=list.get(i).getBbsTitle() %></a></td>
+							<td><%=list.get(i).getBbsuserID() %></td>
+							<td><%=list.get(i).getBbsDate().substring(0,11) %></td>
+						</tr>		
+					<%
+						}
 					%>					
 					</tbody>
 				</table>
+					<%
+						if(pagenumber !=1){
+					%>
+						<a href="board.jsp?pagenumber=<%=pagenumber-1 %>"class="btn btn-success btn-arraw-left"> 이전 </a>
+					<%
+						}
+					%>	
+					<%
+						if(bbsDao.nextpage(pagenumber +1)){
+					%>
+						<a href="board.jsp?pagenumber=<%=pagenumber+1 %>"class="btn btn-success btn-arraw-left"> 다음 </a>
+					<%
+						}
+					%>		
+					
 				<a href="write.jsp" class="btn btn-primary pull-right">글작성</a>
 			</div>
 		</div>
