@@ -62,64 +62,80 @@
 			}
 		</script>
 		
-		
+		<%
+			String ProductID = request.getParameter("ProductID");
+			ProductDao dao = ProductDao.getinstance();
+			Product product = dao.getProduct(ProductID);
+		%>
 		
 		<div class="container">
-			<form name="newproduct" method="post" action="addProductAction.jsp" enctype="multipart/form-data" onsubmit="return checkadd()">
+			<form name="newproduct" method="post" action="updateProductAction.jsp" enctype="multipart/form-data" onsubmit="return checkadd()">
 	
 				<div class="form-group row">
 					<label class="col-sm-2">상품코드</label>
 					<div class="col-sm-3">
-						<input type="text" name="ProductID" class="form-control">
+						<input type="text" name="ProductID" class="form-control" value="<%=product.getProductID()%>" readonly="readonly">
 					</div>
+					<label>*수정불가</label>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">상품명</label>
 					<div class="col-sm-3">
-						<input type="text" name="pname" class="form-control">
+						<input type="text" name="pname" class="form-control" value="<%=product.getPname()%>">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">상품가격</label>
 					<div class="col-sm-3">
-						<input type="text" name="pprice" class="form-control">
+						<input type="text" name="pprice" class="form-control" value="<%=product.getPprice()%>">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">상품 설명</label>
 					<div class="col-sm-3">
-						<textarea rows="5" cols="30" name="description" class="form-control"></textarea>
+						<textarea rows="5" cols="30" name="description" class="form-control"><%=product.getDescription()%></textarea>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">제조사</label>
 					<div class="col-sm-3">
-						<input type="text" name="manufacturer" class="form-control">
+						<input type="text" name="manufacturer" class="form-control" value="<%=product.getManufacturer()%>">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">분류</label>
 					<div class="col-sm-3">
-						<input type="text" name="category" class="form-control">
+						<input type="text" name="category" class="form-control" value="<%=product.getCategory()%>">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">재고 수</label>
 					<div class="col-sm-3">
-						<input type="text" name="pinstock" class="form-control">
+						<input type="text" name="pinstock" class="form-control" value="<%=product.getPinstock()%>">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">상태</label>
 					<div class="col-sm-3">
+					<%if(product.getconditions().equals("New")) {
+					%>	
+						<input type="radio" name="conditions" value="New" checked="checked"> 신제품
+						<input type="radio" name="conditions" value="Old"> 기존제품					
+					<% 
+					}else{
+					%>
 						<input type="radio" name="conditions" value="New"> 신제품
-						<input type="radio" name="conditions" value="Old"> 기존제품
+						<input type="radio" name="conditions" value="Old" checked="checked"> 기존제품
+					<% 
+					}
+					%>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2">이미지파일</label>
 					<div class="col-sm-3">
 						<input type="file" name="filename" class="form-control">
+						<label>기존파일 : <%=product.getFilename() %></label>
 					</div>
 				</div>
 				<div class="form-group row">

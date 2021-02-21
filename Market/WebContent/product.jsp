@@ -36,26 +36,25 @@
 			
 			Product product = dao.getProduct(ProductID);
 			
-		
 		%>
 		
-		<div class="container">
-			<div class="col-md-5">
-				<img alt="" src="image/<%=product.getFilename()%>" style="width:100%">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<img alt="" src="image/<%=product.getFilename()%>" style="width: 100%">
+					</div>
+					
+					<div class="col-md-7">
+						<h3><%=product.getPname() %></h3>
+						<p> <%=product.getDescription() %>
+						<p> 상품 코드 : <%=product.getProductID() %>
+						<p> 상품 제조사 : <%=product.getManufacturer() %>
+						<p> 상품 분류 : <%=product.getCategory() %>
+						<p> 상품 재고 : <%=product.getPinstock() %>
+						<p> 상품 가격 : <%=product.getPprice() %>
+					</div>
+				</div>
 			</div>
-		</div>
-		
-		<div class="col-md-7">
-			<h3><%=product.getPname() %></h3>
-			<p><%=product.getDescription() %>
-			<p>상품코드 : <%=product.getProductID() %>
-			<p>상품 제조사 : <%=product.getManufacturer() %>
-			<p>상품 분류 : <%=product.getCategory() %>
-			<p>상품 재고 : <%=product.getPinstock() %>
-			<p>상품 가격 : <%=product.getPprice()%>
-		</div>
-		
-	<%@include file ="footer.jsp" %>
-
+		<%@include file ="footer.jsp" %>
 </body>
 </html>

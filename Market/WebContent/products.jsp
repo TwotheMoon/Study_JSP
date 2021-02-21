@@ -1,3 +1,4 @@
+<%@page import="java.io.StringReader"%>
 <%@page import="dto.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.ProductDao"%>
@@ -29,24 +30,36 @@
 		<%
 			ProductDao dao = ProductDao.getinstance();
 			ArrayList<Product> listProducts = dao.getAllProducts();
+			String category = request.getParameter("category");
 		%>
 		
 		<div class="container">
 			<div class="row" align="center">
 			
 			<%
+					
+			
 				for(int i = 0; i<listProducts.size(); i++){
 					Product product = listProducts.get(i);
+					
+					if( category==null ){
+					
 			%>
 				<div class="col-md-4">
-					<a href="product.jsp?ProductID<%=product.getProductID()%>"><img src="image/<%=product.getFilename()%>" style="width:100%"> </a>
+					<a href="product.jsp?ProductID=<%=product.getProductID()%>"><img src="image/<%=product.getFilename()%>" style="width:100%"> </a>
 					<h3><%=product.getPname() %></h3>
-					<p><%=product.getDescription() %></p>
-					<p><%=product.getPprice() %></p>
-					<p><a href="product.jsp?ProductID<%=product.getProductID() %>" class="btn btn-info" role="button">상세보기</a></p>
+					<p><%=product.getDescription() %>
+					<p><%=product.getPprice() %>
+					<p><a href="product.jsp?ProductID=<%=product.getProductID() %>" class="btn btn-info" role="button">상세보기</a>
 				</div>
 			<%	
-				}	
+				}else if( product.getCategory().equals("notebook")) {
+					
+					
+				}
+					
+				}
+			
 			%>
 			</div>
 		</div>

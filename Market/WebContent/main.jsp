@@ -74,11 +74,11 @@
 					Product product = listProducts.get(i);
 			%>
 				<div class="col-md-4">
-					<a href="product.jsp?ProductID<%=product.getProductID()%>"><img src="image/<%=product.getFilename()%>" style="width:100%"></a>
-					<h3><%=product.getPname() %></h3>
-					<p><%=product.getDescription() %></p>
-					<p><%=product.getPprice() %></p>
-					<p><a href="product.jsp?ProductID<%=product.getProductID()%>" class="btn btn-info" role="button">상세보기</a></p>
+					<a href="product.jsp?ProductID=<%=product.getProductID()%>"><img src="image/<%=product.getFilename() %>" style="width: 100%"></a>
+						<h3> <%=product.getPname() %></h3>
+						<p><%=product.getDescription() %>
+						<p><%=product.getPprice() %>
+						<p><a href="product.jsp?ProductID=<%=product.getProductID()%>" class="btn btn-primary" role="button"> 상세보기 </a>
 				</div>
 			<%	
 				}	

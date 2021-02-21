@@ -61,7 +61,7 @@
     	product.setActivation(1);
     	
     
-    	dao.setProduct(product);
+    	dao.updateProduct(product);
     	
     	response.sendRedirect("products.jsp");
 
