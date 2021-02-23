@@ -7,7 +7,7 @@
 
     <%
     	request.setCharacterEncoding("UTF-8");
-    	String ProductID = request.getParameter("Product");
+    	String ProductID = request.getParameter("ProductID");
     	ProductDao dao = ProductDao.getinstance();
     
     	dao.deleteProduct(ProductID);

@@ -66,7 +66,7 @@ public class ProductDao {
 			
 			Product product = null;
 			
-				String SQL = "SELECT * FROM market WHERE productID=?";
+				String SQL = "SELECT * FROM market WHERE productID =?";
 				
 				try {
 					PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -90,7 +90,7 @@ public class ProductDao {
 						return product;
 					}
 				}catch (Exception e) {
-					// TODO: handle exception
+					e.getStackTrace();
 				}
 			
 			return product;
@@ -128,8 +128,8 @@ public class ProductDao {
 		public int updateProduct( Product Product) {
 			
 			String SQL = "update market set pname=? , pprice=? , description=? , "
-					+ "manufacturer=? , category=? , pinstock=? , filename=? , "
-					+ "activation=? where productID =?";
+					+ "manufacturer=? , category=? , pinstock=? , conditions =?, "
+					+ "filename=? , activation=? where productID =?";
 			
 			try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -147,7 +147,7 @@ public class ProductDao {
 			return 1;	
 			}
 			catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 			
 			return -1;
@@ -166,7 +166,7 @@ public class ProductDao {
 					return 1;	
 					}
 					catch (Exception e) {
-						// TODO: handle exception
+						e.printStackTrace();
 					}
 					
 					return -1;

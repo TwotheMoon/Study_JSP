@@ -33,7 +33,6 @@
 			String ProductID = request.getParameter("ProductID");
 			
 			ProductDao dao = ProductDao.getinstance();
-			
 			Product product = dao.getProduct(ProductID);
 			
 		%>
@@ -50,7 +49,17 @@
 						<p> 상품 코드 : <%=product.getProductID() %>
 						<p> 상품 제조사 : <%=product.getManufacturer() %>
 						<p> 상품 분류 : <%=product.getCategory() %>
+						<%
+							if(product.getPinstock() == 0){
+						%>
+						<p> 상품 재고 : 매진
+						<% 		
+							}else{
+						%>
 						<p> 상품 재고 : <%=product.getPinstock() %>
+						<%
+							}
+						%>
 						<p> 상품 가격 : <%=product.getPprice() %>
 					</div>
 				</div>

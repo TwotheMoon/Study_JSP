@@ -63,7 +63,7 @@
     
     	dao.updateProduct(product);
     	
-    	response.sendRedirect("products.jsp");
+    	response.sendRedirect("editproduct.jsp");
 
     %>
     

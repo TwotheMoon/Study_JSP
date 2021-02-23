@@ -70,8 +70,8 @@
 					<td><%=product.getconditions() %></td>
 					<td><%=product.getFilename() %></td>
 			
-				<td><a href="updateproduct.jsp?Product=<%=product.getProductID() %>" class="badge badge-danger"> 수정 </a></td>
-				<td><a href="deleteProductAction.jsp?Product=<%=product.getProductID() %>" class="badge badge-danger"> 삭제 </a></td>
+				<td><a href="updateproduct.jsp?ProductID=<%=product.getProductID() %>" class="badge badge-danger"> 수정 </a></td>
+				<td><a href="deleteProductAction.jsp?ProductID=<%=product.getProductID() %>" class="badge badge-danger"> 삭제 </a></td>
 				</tr>
 				
 			<%	
