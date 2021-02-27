@@ -11,8 +11,7 @@ public class Member {
 	private String phone;
 	private String address;
 	private String regist_day;
-	
-	
+	private int admin;
 	public String getId() {
 		return id;
 	}
@@ -67,5 +66,16 @@ public class Member {
 	public void setRegist_day(String regist_day) {
 		this.regist_day = regist_day;
 	}
+	public int getAdmin() {
+		return admin;
+	}
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
+	
+	
+	
+	
+	
 	
 }

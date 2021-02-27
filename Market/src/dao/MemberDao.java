@@ -32,7 +32,7 @@ public class MemberDao {
 	// 메소드 : 회원 추가
 	public int setmember( Member member) {
 		
-		String SQL = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -45,6 +45,7 @@ public class MemberDao {
 			pstmt.setString(7, member.getPhone());
 			pstmt.setString(8, member.getAddress());
 			pstmt.setString(9, member.getRegist_day());
+			pstmt.setInt(10, 0);
 			pstmt.executeUpdate();
 			return 1;	
 		}
@@ -57,16 +58,16 @@ public class MemberDao {
 	
 	
 	// 로그인 메소드
-	public int login(String logID, String logPassword) {
-		String SQL = "SELECT password FROM meember WHERE id=?";
+	public int login(String logId, String logPw) {
+		String SQL = "SELECT password FROM member WHERE id=?";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, logID);
+			pstmt.setString(1, logId);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString(1).equals(logPassword)){
+				if(rs.getString(1).equals(logPw)){
 					return 1;
 				}else {
 					return -1;
@@ -75,7 +76,7 @@ public class MemberDao {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return -2;
 	}
 	
 	

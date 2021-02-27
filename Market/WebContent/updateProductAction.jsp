@@ -25,7 +25,7 @@
     	String pinstock = multi.getParameter("pinstock");
     	String conditions = multi.getParameter("conditions");
     	String filename = multi.getFilesystemName("filename");
-    
+		
     	
     	//
     	Integer price;

@@ -17,8 +17,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<%@include file ="menu.jsp" %>
+<%  
+	if(session.getAttribute("userID") != null ){
+		userID = (String)session.getAttribute("userID");
+	}
+%>
 	
 		<% // 캐러셀 %>
 		
