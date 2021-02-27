@@ -1,4 +1,8 @@
 
+<%@page import="java.awt.Stroke"%>
+<%@page import="com.oreilly.servlet.MultipartResponse"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="dto.Product"%>
 <%@page import="dao.ProductDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -134,9 +138,9 @@
 				<div class="form-group row">
 					<label class="col-sm-2">이미지파일</label>
 					<div class="col-sm-3">
+							<input type="hidden" name="filename" >
 							<input type="file" name="filename" class="form-control" >
 							<label>기존파일 : <%=product.getFilename()%></label>
-						
 					</div>
 				</div>
 				<div class="form-group row">

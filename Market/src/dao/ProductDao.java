@@ -25,7 +25,7 @@ public class ProductDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bbs?serverTimezone=UTC", "root","1234");
 		}catch (Exception e) {
-			// TODO: handle exception
+		
 		}
 	}
 
@@ -172,8 +172,6 @@ public class ProductDao {
 					return -1;
 				}
 
-		
-
-
+			
 }
 	

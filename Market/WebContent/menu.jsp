@@ -4,7 +4,7 @@
     <nav class="navbar-default">
     	<div class="container">
     		<div class="navbar-header">
-    			<a class="navbar-brand" href="main.jsp"> <img alt="" src="image/logo.jpg"> </a>
+    			<a class="navbar-brand" href="main.jsp"> <img alt="" src="image/alogo.jpg"> </a>
     		</div>
     		<div class="collapse navbar-collapse">
     			<ul class="nav navbar-nav">
@@ -38,8 +38,8 @@
     						<img src="image/회원아이콘.png" > <span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
-    						<li><a href="#">로그인</a>
-    						<li><a href="#">회원가입</a>
+    						<li><a href="loginmember.jsp">로그인</a>
+    						<li><a href="addmember.jsp">회원가입</a>
     					</ul>
     				</li>
    				</ul>
