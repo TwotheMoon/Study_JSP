@@ -146,7 +146,7 @@
 				<% 
 					}else if(product.getActivation() == 2){
 				%>
-					<td>품절</td>
+					<td>매진</td>
 				<% 		
 					}
 				%>

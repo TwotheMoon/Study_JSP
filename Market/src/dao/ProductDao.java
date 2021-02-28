@@ -237,6 +237,14 @@ public class ProductDao {
 							pstmt2.executeUpdate();
 							return 1;
 					}
+						if(rs.getInt("activation") == 2) {
+							// 뱐걍
+							SQL = "update market set activation = 1 where productID =?";
+							PreparedStatement pstmt2 = conn.prepareStatement(SQL);
+							pstmt2.setString(1, ProductID);
+							pstmt2.executeUpdate();
+							return 1;
+					}
 					return -1;	
 					}
 					catch (Exception e) {
@@ -246,7 +254,7 @@ public class ProductDao {
 					return -1;
 				}
 				
-				// 메소드 : 제품 활성화 여부
+				// 메소드 : 제품 재고 여부
 				public int soldout() {
 					
 					
