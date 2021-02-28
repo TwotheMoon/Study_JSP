@@ -138,7 +138,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2">이미지파일</label>
 					<div class="col-sm-3">
-							<input type="hidden" name="oldFilename" value="<%=product.getFilename() %>" >
+							<input type="hidden" name="oldfilename" value="<%=product.getFilename() %>" >
 							<input type="file" name="filename" class="form-control" >
 							<label>기존파일 : <%=product.getFilename()%></label>
 					</div>

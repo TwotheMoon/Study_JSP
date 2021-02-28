@@ -12,12 +12,12 @@
 </head>
 <body>
 	<%
-		session.invalidate();
+		// 세션 없애기 // 장바구니 = 세션 / 로그인 = 세션
+		session.setAttribute("userID", null);	// 세션은 안죽지만 로그아웃 효과
+		
+		response.sendRedirect("main.jsp");
+		
 	%>	
 	
-	<script type="text/javascript">
-		alert("로그아웃");
-		location.href = "loginmember.jsp";
-	</script>
 </body>
 </html>

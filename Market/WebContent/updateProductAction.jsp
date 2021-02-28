@@ -26,6 +26,9 @@
     	String conditions = multi.getParameter("conditions");
     	String filename = multi.getFilesystemName("filename");
 		
+    	if(filename == null){
+    		filename = multi.getParameter("oldfilename");
+    	}
     	
     	//
     	Integer price;

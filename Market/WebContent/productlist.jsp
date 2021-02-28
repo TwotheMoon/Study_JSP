@@ -1,3 +1,4 @@
+<%@page import="com.sun.org.apache.xpath.internal.compiler.Keywords"%>
 <%@page import="dto.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.ProductDao"%>
@@ -26,36 +27,29 @@
 			</div>
 		</div>			
 		
-	<%
+		<%
+			request.setCharacterEncoding("UTF-8");
+			
+			String key = request.getParameter("key");
+			String keyword = request.getParameter("keyword");
+			ArrayList<Product> listProducts = new ArrayList<>();
+			
+			// 검색이 없을경우
+			if( key == null || keyword == null){
+				ProductDao dao = ProductDao.getinstance();
+				 listProducts = dao.getAllProducts();
+			// 검색이 있을경우
+			}else{ 
+				ProductDao dao = ProductDao.getinstance();
+				 listProducts = dao.searchGetALLProducts(key, keyword);
+			}
+		%>
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		String key = request.getParameter("key");
-		String keyword = request.getParameter("keyword");
-		ArrayList<Product> listProducts = new ArrayList<>();
-		
-		ProductDao dao = ProductDao.getinstance();
-		
-		// 재고가 0 이면 업데이트 => 활성화 : 2변경
-		dao.soldout();
-		
-				// 검색이 없을경우
-		if( key == null || keyword == null){
-			 listProducts = dao.getAllProducts();
-		}else{			
-			 listProducts = dao.searchGetALLProducts(key, keyword);
-		}
-		
-	
-					
-	%>
 		<div class="container">
 		<div class="col-md-3">
 			<%@include file="adminsidebar.jsp"  %>
 		</div>
-		<div class="col-md-9">	
-		
-			
+		<div class="col-md-9">				
 			<div style="padding-top: 50px">
 			
 			<% // 조회 %>
@@ -82,8 +76,10 @@
 					</div>
 				</form>
 			</div>
+			<%// 제품 테이블 %>
 			<table class="table table-hover">
 				<tr>
+					<th> 상품 이미지 </th>
 					<th> 상품코드 </th>
 					<th> 상품명 </th>
 					<th> 상품가격 </th>
@@ -91,11 +87,11 @@
 					<th> 제조사 </th>
 					<th> 분류 </th>
 					<th> 재고 </th>
-					<th> 상태 </th>
-					<th> 활성화</th>
+					<th> 상태</th>
+					<th> 활성화 </th>	
 				</tr>
+			
 			<%
-			// 리스트 개수가 == 0 인경우 => 제품이 없는경우 / 검색 결과가 없는경우
 			if(listProducts.size() == 0){
 			%>
 				<tr>
@@ -110,12 +106,17 @@
 					<td></td>
 					<td></td>
 				</tr>
-			<% 
-			}else{	// 제품이 있는경우				
-			for(int i = 0; i<listProducts.size(); i++){
+			<% 	
+			}else{
+				for(int i = 0; i<listProducts.size(); i++){
 					Product product = listProducts.get(i);
-			%>	
-				<tr>
+
+			%>
+				<tr onclick="location.href='product.jsp?ProductID=<%=product.getProductID()%>'" >
+											<% // 열 고정 태그 %>
+					<td width="150" style="word-break:break-all"><img src="image/<%=product.getFilename()%>" style="width: 50%">
+						<br> <%=product.getFilename() %>
+					</td>
 					<td><%=product.getProductID() %></td>
 					<td><%=product.getPname() %></td>
 					<td><%=product.getPprice() %></td>
@@ -137,7 +138,6 @@
 				<%
 					if(product.getActivation() == 1){
 				%>
-					
 					<td>판매중</td>
 				<% 
 					}else if(product.getActivation() == 0){
@@ -150,12 +150,8 @@
 				<% 		
 					}
 				%>
-				<td><a href="updateproduct.jsp?ProductID=<%=product.getProductID() %>" class="badge badge-danger"> 수정 </a></td>
-				<td><a href="deleteProductAction.jsp?ProductID=<%=product.getProductID() %>" class="badge badge-danger"> 삭제 </a></td>
-				<td><a href="activeProductAction.jsp?ProductID=<%=product.getProductID() %>" class="badge badge-danger"> 판매 </a></td>
 				</tr>
-				
-			<%
+			<%	
 					}
 				}	
 			%>

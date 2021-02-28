@@ -25,11 +25,14 @@
     			script.print("</script>");
     		}
     		    
+    		
+    		
     		String logId = request.getParameter("id");
 			String logPw = request.getParameter("password");
  	
 			Member member = new Member();
 			MemberDao memberDao = new MemberDao();
+			
 			int result = memberDao.login(logId, logPw);
 			
 			if(result == 1){
@@ -40,7 +43,7 @@
 			script.print("</script>");
 			}
 			
-			if(result == -1){
+			if(result == 0){
 			PrintWriter script = response.getWriter();
 			script.print("<script>");
 			script.print("alert('아이디 혹은 비밀번호가 틀렸습니다.');");
@@ -48,10 +51,10 @@
 			script.print("</script>");
 			}
 			
-			if(result == -2){
+			if(result == -1){
 			PrintWriter script = response.getWriter();
-			script.print("<script>");
-			script.print("alert('존재하지 않는 아이디입니다.');");
+			script.print("<script>");    
+			script.print("alert('데이터베이스 오류');");
 			script.print("history.back()");
 			script.print("</script>");
 			}

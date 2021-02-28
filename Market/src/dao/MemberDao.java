@@ -59,24 +59,23 @@ public class MemberDao {
 	
 	// 로그인 메소드
 	public int login(String logId, String logPw) {
-		String SQL = "SELECT password FROM member WHERE id=?";
+		String SQL = "SELECT * FROM member WHERE id = ? and password = ?";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, logId);
+			pstmt.setString(2, logPw);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString(1).equals(logPw)){
 					return 1;
 				}else {
-					return -1;
+					return 0;
 				}
-			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -2;
+		return -1;
 	}
 	
 	

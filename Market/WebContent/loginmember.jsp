@@ -48,7 +48,7 @@
 			alert(" 아이디 입력해주세요. ");
 			return false;
 		}
-		// 중복체크 db연동 후 작성
+		// 중복체크 DB 연동후 기입
 	}
 </script>
 

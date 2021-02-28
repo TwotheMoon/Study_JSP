@@ -1,5 +1,6 @@
 package dao;
 
+import java.awt.Stroke;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,8 +34,8 @@ public class ProductDao {
 	public ArrayList<Product> getAllProducts(){
 		ArrayList<Product> listProducts = new ArrayList<Product>();
 		
-			String SQL = "SELECT * FROM market";
-			try {
+			String SQL = "SELECT * FROM market ";
+			try {							
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 				// 쿼리 : 검색 결과의 레코드 [ 테이블 가로 단위]
@@ -51,6 +52,7 @@ public class ProductDao {
 				product.setPinstock(rs.getInt(7));
 				product.setconditions(rs.getString(8));
 				product.setFilename(rs.getString(9));
+				product.setActivation(rs.getInt(10));
 				
 				listProducts.add(product);
 			}
@@ -172,6 +174,93 @@ public class ProductDao {
 					return -1;
 				}
 
+				// 검색 제품 호출
+				public ArrayList<Product> searchGetALLProducts(String key, String keyword){
+					ArrayList<Product> listProducts = new ArrayList<Product>();
+					
+						String SQL = "SELECT * FROM market where "+key+" like '%"+keyword+"%'";
+																//검색값이 필드에 포함된 레코드 찾기 
+																//필드명 like '%검색값%'
+						try {
+						PreparedStatement pstmt = conn.prepareStatement(SQL);
+						rs = pstmt.executeQuery();
+							// 쿼리 : 검색 결과의 레코드 [ 테이블 가로 단위]
+						while(rs.next()) {	// 쿼리 결과의 레코드가 null 일때 까지 반복
+							
+							// 한개 레코드의 모든 필드를 각 객체에 대입
+							Product product = new Product();
+							product.setProductID(rs.getString(1));
+							product.setPname(rs.getString(2));
+							product.setPprice(rs.getInt(3));
+							product.setDescription(rs.getString(4));
+							product.setManufacturer(rs.getString(5));
+							product.setCategory(rs.getString(6));
+							product.setPinstock(rs.getInt(7));
+							product.setconditions(rs.getString(8));
+							product.setFilename(rs.getString(9));
+							
+							listProducts.add(product);
+						}
+					}catch (Exception e) {
+						
+					}
+					return listProducts;
+				}
+				
+				// 메소드 : 제품 활성화 여부
+				public int activation( String ProductID) {
+					
+					String SQL = "select activation from market where productID = ?";
+					
+					try {
+					PreparedStatement pstmt = conn.prepareStatement(SQL);
+					pstmt.setString(1, ProductID);	
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						// 판매중 1 => 미판매 0 
+							if(rs.getInt("activation") == 1) {
+								// 뱐걍
+								SQL = "update market set activation = 0 where productID =?";
+								PreparedStatement pstmt2 = conn.prepareStatement(SQL);
+								pstmt2.setString(1, ProductID);
+								pstmt2.executeUpdate();
+								return 1;
+							}
+						// 미판매 0 => 판매중 1
+					}
+						if(rs.getInt("activation") == 0) {
+							// 뱐걍
+							SQL = "update market set activation = 1 where productID =?";
+							PreparedStatement pstmt2 = conn.prepareStatement(SQL);
+							pstmt2.setString(1, ProductID);
+							pstmt2.executeUpdate();
+							return 1;
+					}
+					return -1;	
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					return -1;
+				}
+				
+				// 메소드 : 제품 활성화 여부
+				public int soldout() {
+					
+					
+					String SQL = "update market set activation = 2 where pinstock = 0";
+					try {
+					PreparedStatement pstmt = conn.prepareStatement(SQL);
+					pstmt.executeUpdate();
+					return 1;
+					}
+					catch (Exception e) {
+						e.printStackTrace();
+					}
+					return -1;
+				}
 			
 }
 	

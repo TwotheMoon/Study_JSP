@@ -24,6 +24,7 @@
 	
 		<div class="jumbotron">
 			<div class="container">
+
 				<h1> 제품 등록 </h1>
 			</div>
 		</div>			
@@ -65,6 +66,11 @@
 		
 		
 		<div class="container">
+		
+		<div class="col-md-3">
+			<%@include file="adminsidebar.jsp"  %>
+		</div>
+		<div class="col-md-9">	
 			<form name="newproduct" method="post" action="addProductAction.jsp" enctype="multipart/form-data" onsubmit="return checkadd()">
 	
 				<div class="form-group row">
@@ -128,8 +134,8 @@
 				</div>
 			</form>
 		</div>
-		
-	<%@include file ="footer.jsp" %>
+		</div>
+	
 
 </body>
 </html>
