@@ -21,8 +21,8 @@
 				<h3 class="panel-title">회원</h3>
 			</div>    	
 			<ul class="list-group">
-				<li class="list-group-item"><a href="producs.jsp"> 회원 목록</a> </li>
-				<li class="list-group-item"><a href="addproduct.jsp"> 회원 관리</a> </li>
+				<li class="list-group-item"><a href="memberlist.jsp"> 회원 목록</a> </li>
+				<li class="list-group-item"><a href="editmember.jsp"> 회원 관리</a> </li>
 			</ul>
 			
 		<div class="panel panel-info">

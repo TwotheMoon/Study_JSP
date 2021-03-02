@@ -32,7 +32,7 @@ public class MemberDao {
 	// 메소드 : 회원 추가
 	public int setmember( Member member) {
 		
-		String SQL = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -45,7 +45,6 @@ public class MemberDao {
 			pstmt.setString(7, member.getPhone());
 			pstmt.setString(8, member.getAddress());
 			pstmt.setString(9, member.getRegist_day());
-			pstmt.setInt(10, 0);
 			pstmt.executeUpdate();
 			return 1;	
 		}
@@ -80,11 +79,11 @@ public class MemberDao {
 	
 	
 	
-	// 메소드 : 모든 제품 호출
-		public ArrayList<Product> getAllProducts(){
-			ArrayList<Product> listProducts = new ArrayList<Product>();
+	// 메소드 : 모든 멤버 호출
+		public ArrayList<Member> getAllMembers(){
+			ArrayList<Member> listMemebers = new ArrayList<Member>();
 			
-				String SQL = "SELECT * FROM market";
+				String SQL = "SELECT * FROM member";
 				try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);
 				rs = pstmt.executeQuery();
@@ -92,62 +91,88 @@ public class MemberDao {
 				while(rs.next()) {	// 쿼리 결과의 레코드가 null 일때 까지 반복
 					
 					// 한개 레코드의 모든 필드를 각 객체에 대입
-					Product product = new Product();
-					product.setProductID(rs.getString(1));
-					product.setPname(rs.getString(2));
-					product.setPprice(rs.getInt(3));
-					product.setDescription(rs.getString(4));
-					product.setManufacturer(rs.getString(5));
-					product.setCategory(rs.getString(6));
-					product.setPinstock(rs.getInt(7));
-					product.setconditions(rs.getString(8));
-					product.setFilename(rs.getString(9));
+					Member member = new Member();
+					member.setId(rs.getString(1));
+					member.setPassword(rs.getString(2));
+					member.setName(rs.getString(3));
+					member.setGender(rs.getString(4));
+					member.setBirth(rs.getString(5));
+					member.setMail(rs.getString(6));
+					member.setPhone(rs.getString(7));
+					member.setAddress(rs.getString(8));
+					member.setRegist_day(rs.getString(9));
 					
-					listProducts.add(product);
+					listMemebers.add(member);
 				}
 			}catch (Exception e) {
 				
 			}
-			return listProducts;
+			return listMemebers;
 		}
 		
 		
-		// 메소드 : 제품id에 해당하는 제품 정보 반환
-			public Product getProduct( String ProductID) {
+		// 메소드 : 유저id에 해당하는 유저 정보 반환
+			public Member getMember( String id) {
 				
-				Product product = null;
+				Member member = null;
 				
-					String SQL = "SELECT * FROM market WHERE productID =?";
+					String SQL = "SELECT * FROM member WHERE id =?";
 					
 					try {
 						PreparedStatement pstmt = conn.prepareStatement(SQL);
-						pstmt.setString(1, ProductID);
+						pstmt.setString(1, id);
 						rs = pstmt.executeQuery();
 						
 						if(rs.next()) {	// 쿼리 시작 null 부터
 							
-							product = new Product();
-							product.setProductID(rs.getString(1));
-							product.setPname(rs.getString(2));
-							product.setPprice(rs.getInt(3));
-							product.setDescription(rs.getString(4));
-							product.setManufacturer(rs.getString(5));
-							product.setCategory(rs.getString(6));
-							product.setPinstock(rs.getInt(7));
-							product.setconditions(rs.getString(8));
-							product.setFilename(rs.getString(9));
-							product.setActivation(rs.getInt(10));
+							member = new Member();
+							member.setId(rs.getString(1));
+							member.setPassword(rs.getString(2));
+							member.setName(rs.getString(3));
+							member.setGender(rs.getString(4));
+							member.setBirth(rs.getString(5));
+							member.setMail(rs.getString(6));
+							member.setPhone(rs.getString(7));
+							member.setAddress(rs.getString(8));
+							member.setRegist_day(rs.getString(9));
 							
-							return product;
+							return member;
 						}
 					}catch (Exception e) {
 						e.getStackTrace();
 					}
 				
-				return product;
+				return member;
 			}
 		
-		
+		// 검색 제품 호출
+			public ArrayList<Member> searchGetALLMembers(String key, String keyword) {
+				ArrayList<Member> listMembers = new ArrayList<Member>();
+				
+				String SQL = "SELECT * member where "+key+" like '%"+keyword+"%'";
+				
+				try {
+					PreparedStatement pstmt = conn.prepareStatement(SQL);
+					rs = pstmt.executeQuery();
+					while (rs.next()) {
+						Member member = new Member();
+						member.setId(rs.getString(1));
+						member.setPassword(rs.getString(2));
+						member.setName(rs.getString(3));
+						member.setGender(rs.getString(4));
+						member.setBirth(rs.getString(5));
+						member.setMail(rs.getString(6));
+						member.setPhone(rs.getString(7));
+						member.setAddress(rs.getString(8));
+						member.setRegist_day(rs.getString(9));
+						
+						listMembers.add(member);
+					}
+				}catch (Exception e) {
+					// TODO: handle exception
+				}
+				return listMembers;
+			}
 		
 		// 메소드 : 제품 수정
 			public int updateProduct( Product Product) {

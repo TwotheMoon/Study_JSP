@@ -1,3 +1,4 @@
+<%@page import="dao.MemberDao"%>
 <%@page import="dto.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.ProductDao"%>
@@ -22,7 +23,7 @@
 	
 		<div class="jumbotron">
 			<div class="container">
-				<h1> 제품 목록 </h1>
+				<h1> 회원 목록 </h1>
 			</div>
 		</div>			
 		
@@ -31,16 +32,17 @@
 			
 			String key = request.getParameter("key");
 			String keyword = request.getParameter("keyword");
-			ArrayList<Product> listProducts = new ArrayList<>();
+			ArrayList<Member> listMembers = new ArrayList<>();
 			
-			// 검색이 없을경우
+			 //검색이 없을경우
 			if( key == null || keyword == null){
-				ProductDao dao = ProductDao.getinstance();
-				 listProducts = dao.getAllProducts();
+				MemberDao dao = MemberDao.getinstance();
+				listMembers = dao.getAllMembers();
 			// 검색이 있을경우
 			}else{ 
-				ProductDao dao = ProductDao.getinstance();
-				 listProducts = dao.searchGetALLProducts(key, keyword);
+				MemberDao dao = MemberDao.getinstance();
+				listMembers = dao.searchGetALLMembers(key, keyword);// 멤버 찾기 메소드 만들기
+						
 			}
 		%>
 		
@@ -54,14 +56,14 @@
 			<% // 조회 %>
 			<div class="col-sm-6"> <%// 공백 %></div>
 			<div class="col-sm-6">
-				<form action="editproduct.jsp" method="post" name="form">
+				<form action="editmember.jsp" method="post" name="form">
 					<div class="form-group row">
 						<div class="col-sm-4">
 							<select name="key" class="form-control">
-								<option value="productID">상품코드</option>
-								<option value="pname">상품명</option>
-								<option value="manufacturer">제조사</option>
-								<option value="category">분류</option>
+								<option value="id">아이디</option>
+								<option value="name">이름</option>
+								<option value="birth">생년월일</option>
+								<option value="gender">성별</option>
 							</select>
 						</div>
 						
@@ -78,20 +80,19 @@
 			<%// 제품 테이블 %>
 			<table class="table table-hover">
 				<tr>
-					<th> 상품 이미지 </th>
-					<th> 상품코드 </th>
-					<th> 상품명 </th>
-					<th> 상품가격 </th>
-					<th> 상품설명 </th>
-					<th> 제조사 </th>
-					<th> 분류 </th>
-					<th> 재고 </th>
-					<th> 상태</th>
-					<th> 활성화 </th>	
+					<th> 어이디 </th>
+					<th> 패스워드 </th>
+					<th> 이름 </th>
+					<th> 생년월일 </th>
+					<th> 성별</th>
+					<th> 이메일 </th>
+					<th> 연락처 </th>
+					<th> 주소 </th>
+					<th> 회원가입 날짜 </th>
+					<th>  </th>	
 				</tr>
-			
 			<%
-			if(listProducts.size() == 0){
+			if(listMembers.size() == 0){
 			%>
 				<tr>
 					<td></td>
@@ -107,52 +108,24 @@
 				</tr>
 			<% 	
 			}else{
-				for(int i = 0; i<listProducts.size(); i++){
-					Product product = listProducts.get(i);
+				for(int i = 0; i<listMembers.size(); i++){
+					Member member = listMembers.get(i);
 
 			%>
-				<tr onclick="location.href='product.jsp?ProductID=<%=product.getProductID()%>'" >
-											<% // 열 고정 태그 %>
-					<td width="150" style="word-break:break-all"><img src="image/<%=product.getFilename()%>" style="width: 50%">
-						<br> <%=product.getFilename() %>
-					</td>
-					<td><%=product.getProductID() %></td>
-					<td><%=product.getPname() %></td>
-					<td><%=product.getPprice() %></td>
-					<td><%=product.getDescription() %></td>
-					<td><%=product.getManufacturer() %></td>
-					<td><%=product.getCategory() %></td>
-				<%
-					if(product.getPinstock() == 0){
-				%>
-					<td>매진</td>
-				<% 		
-					}else{
-				%>
-					<td><%=product.getPinstock() %></td>
-				<%
-					}
-				%>
-					<td><%=product.getconditions() %></td>
-				<%
-					if(product.getActivation() == 1){
-				%>
-					<td>판매중</td>
-				<% 
-					}else if(product.getActivation() == 0){
-				%>
-					<td>미판매</td>
-				<% 
-					}else if(product.getActivation() == 2){
-				%>
-					<td>매진</td>
-				<% 		
-					}
-				%>
+				<tr>
+					<td><%=member.getId() %></td>
+					<td><%=member.getPassword() %></td>
+					<td><%=member.getName() %></td>
+					<td><%=member.getGender() %></td>
+					<td><%=member.getBirth() %></td>
+					<td><%=member.getMail() %></td>
+					<td><%=member.getPhone() %></td>
+					<td><%=member.getAddress() %></td>
+					<td><%=member.getRegist_day() %></td>
 				</tr>
-			<%	
-					}
-				}	
+			<%
+				 }
+				}
 			%>
 			</table>
 			</div>
