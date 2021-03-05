@@ -56,7 +56,7 @@
 			<% // 조회 %>
 			<div class="col-sm-6"> <%// 공백 %></div>
 			<div class="col-sm-6">
-				<form action="editmember.jsp" method="post" name="form">
+				<form action="memberlist.jsp" method="post" name="form">
 					<div class="form-group row">
 						<div class="col-sm-4">
 							<select name="key" class="form-control">
@@ -80,11 +80,11 @@
 			<%// 제품 테이블 %>
 			<table class="table table-hover">
 				<tr>
-					<th> 어이디 </th>
+					<th> 아이디 </th>
 					<th> 패스워드 </th>
 					<th> 이름 </th>
-					<th> 생년월일 </th>
-					<th> 성별</th>
+					<th> 성별 </th>
+					<th> 생년월일</th>
 					<th> 이메일 </th>
 					<th> 연락처 </th>
 					<th> 주소 </th>

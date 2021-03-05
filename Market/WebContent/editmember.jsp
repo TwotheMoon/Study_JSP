@@ -37,9 +37,7 @@
 		
 		MemberDao dao = MemberDao.getinstance();
 		
-		// 재고가 0 이면 업데이트 => 활성화 : 2변경
-		//dao.soldout();
-		
+	
 				// 검색이 없을경우
 		if( key == null || keyword == null){
 			 listMembers = dao.getAllMembers();
@@ -62,7 +60,7 @@
 			<% // 조회 %>
 			<div class="col-sm-6"> <%// 공백 %></div>
 			<div class="col-sm-6">
-				<form action="editproduct.jsp" method="post" name="form">
+				<form action="memberlist.jsp" method="post" name="form">
 					<div class="form-group row">
 						<div class="col-sm-4">
 							<select name="key" class="form-control">
@@ -88,8 +86,8 @@
 					<th> 아이디 </th>
 					<th> 패스워드 </th>
 					<th> 이름 </th>
-					<th> 생년월일 </th>
 					<th> 성별 </th>
+					<th> 생년월일 </th>
 					<th> 이메일 </th>
 					<th> 연락처 </th>
 					<th> 주소 </th>
@@ -120,14 +118,15 @@
 					<td><%=member.getId() %></td>
 					<td><%=member.getPassword() %></td>
 					<td><%=member.getName() %></td>
+					<td><%=member.getGender() %></td>
 					<td><%=member.getBirth() %></td>
-					<td><%=member.getGender() %></td>
-					<td><%=member.getGender() %></td>
-					<td><%=member.getGender() %></td>
+					<td><%=member.getMail() %></td>
+					<td><%=member.getPhone() %></td>
+					<td><%=member.getAddress() %></td>
+					<td><%=member.getRegist_day() %></td>
 			
-				<td><a href="updateproduct.jsp" class="badge badge-danger"> 수정 </a></td>
-				<td><a href="deleteProductAction.jsp" class="badge badge-danger"> 삭제 </a></td>
-				<td><a href="activeProductAction.jsp>" class="badge badge-danger"> 판매 </a></td>
+				<td><a href="updateMember.jsp?id=<%=member.getId() %>" class="badge badge-danger"> 수정 </a></td>
+				<td><a href="deleteMemberAction.jsp?id=<%=member.getId()%>" class="badge badge-danger"> 삭제 </a></td>
 				</tr>
 				
 			<%

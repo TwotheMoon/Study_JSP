@@ -145,11 +145,11 @@ public class MemberDao {
 				return member;
 			}
 		
-		// 검색 제품 호출
+		// 검색 멤버 호출
 			public ArrayList<Member> searchGetALLMembers(String key, String keyword) {
 				ArrayList<Member> listMembers = new ArrayList<Member>();
 				
-				String SQL = "SELECT * member where "+key+" like '%"+keyword+"%'";
+				String SQL = "SELECT * from member where "+key+" like '%"+keyword+"%'";
 				
 				try {
 					PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -174,25 +174,24 @@ public class MemberDao {
 				return listMembers;
 			}
 		
-		// 메소드 : 제품 수정
-			public int updateProduct( Product Product) {
+		// 메소드 : 멤버 수정
+			public int updateMember( Member member) {
 				
-				String SQL = "update market set pname=? , pprice=? , description=? , "
-						+ "manufacturer=? , category=? , pinstock=? , conditions =?, "
-						+ "filename=? , activation=? where productID =?";
+				String SQL = "update member set id=? , password=? , name=? , "
+						+ "gender=? , birth=? , mail=? , phone =?, "
+						+ "address=? , regist_day=? where id =?";
 				
 				try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				pstmt.setString(1, Product.getPname());
-				pstmt.setInt(2, Product.getPprice());
-				pstmt.setString(3, Product.getDescription());
-				pstmt.setString(4, Product.getManufacturer());
-				pstmt.setString(5, Product.getCategory());
-				pstmt.setInt(6, Product.getPinstock());
-				pstmt.setString(7, Product.getconditions());
-				pstmt.setString(8, Product.getFilename());
-				pstmt.setInt(9, Product.getActivation());
-				pstmt.setString(10, Product.getProductID());
+				pstmt.setString(1, member.getId());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getName());
+				pstmt.setString(4, member.getGender());
+				pstmt.setString(5, member.getBirth());
+				pstmt.setString(6, member.getMail());
+				pstmt.setString(7, member.getPhone());
+				pstmt.setString(9, member.getAddress());
+				pstmt.setString(9, member.getRegist_day());
 					pstmt.executeUpdate();
 				return 1;	
 				}
@@ -204,14 +203,14 @@ public class MemberDao {
 			}
 			
 		
-			// 메소드 : 제품 삭제
-					public int deleteProduct( String ProductID) {
+			// 메소드 : 멤버 삭제
+					public int deleteMember( String id) {
 						
-						String SQL = "delete from market where productID =?";
+						String SQL = "delete from member where id =?";
 						
 						try {
 						PreparedStatement pstmt = conn.prepareStatement(SQL);
-						pstmt.setString(1, ProductID);	
+						pstmt.setString(1, id);	
 						pstmt.executeUpdate();
 						return 1;	
 						}
@@ -221,7 +220,6 @@ public class MemberDao {
 						
 						return -1;
 					}
-	
-	
-	
+					
+
 }
