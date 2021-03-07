@@ -14,7 +14,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	
-<title>Insert title here</title>
+<title> 메인 페이지</title>
 </head>
 <body>
 	<%@include file ="menu.jsp" %>
@@ -23,9 +23,7 @@
 		userID = (String)session.getAttribute("userID");
 	}
 %>
-	
-		<% // 캐러셀 %>
-		
+		<% // 캐러셀 %>	
 		<div class="container">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
 				<ol class="carousel-indicators">
@@ -58,18 +56,14 @@
 				<h2> 노트북 </h2>	
 			</div>
 		</div>
-		
 		<p>
 		<p>
 		<p>
 		<p>
-		<p>
-		
 		<%
 			ProductDao dao = ProductDao.getinstance();
 			ArrayList<Product> listProducts = dao.getAllProducts();
 		%>
-		
 		<div class="container">
 			<div class="row" align="center">
 			

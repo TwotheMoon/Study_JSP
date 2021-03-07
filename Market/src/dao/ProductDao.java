@@ -49,7 +49,7 @@ public class ProductDao {
 				product.setManufacturer(rs.getString(5));
 				product.setCategory(rs.getString(6));
 				product.setPinstock(rs.getInt(7));
-				product.setconditions(rs.getString(8));
+				product.setConditions(rs.getString(8));
 				product.setFilename(rs.getString(9));
 				product.setActivation(rs.getInt(10));
 				
@@ -84,7 +84,7 @@ public class ProductDao {
 						product.setManufacturer(rs.getString(5));
 						product.setCategory(rs.getString(6));
 						product.setPinstock(rs.getInt(7));
-						product.setconditions(rs.getString(8));
+						product.setConditions(rs.getString(8));
 						product.setFilename(rs.getString(9));
 						product.setActivation(rs.getInt(10));
 						
@@ -112,7 +112,7 @@ public class ProductDao {
 		pstmt.setString(5, Product.getManufacturer());
 		pstmt.setString(6, Product.getCategory());
 		pstmt.setInt(7, Product.getPinstock());
-		pstmt.setString(8, Product.getconditions());
+		pstmt.setString(8, Product.getConditions());
 		pstmt.setString(9, Product.getFilename());
 		pstmt.setInt(10, Product.getActivation());
 			pstmt.executeUpdate();
@@ -140,7 +140,7 @@ public class ProductDao {
 			pstmt.setString(4, Product.getManufacturer());
 			pstmt.setString(5, Product.getCategory());
 			pstmt.setInt(6, Product.getPinstock());
-			pstmt.setString(7, Product.getconditions());
+			pstmt.setString(7, Product.getConditions());
 			pstmt.setString(8, Product.getFilename());
 			pstmt.setInt(9, Product.getActivation());
 			pstmt.setString(10, Product.getProductID());
@@ -195,7 +195,7 @@ public class ProductDao {
 							product.setManufacturer(rs.getString(5));
 							product.setCategory(rs.getString(6));
 							product.setPinstock(rs.getInt(7));
-							product.setconditions(rs.getString(8));
+							product.setConditions(rs.getString(8));
 							product.setFilename(rs.getString(9));
 							
 							listProducts.add(product);

@@ -7,20 +7,22 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import dto.Member;
+import dto.Order;
+import dto.Order_detail;
 import dto.Product;
 
-public class MemberDao {
+public class DetailDao {
 
 		private Connection conn;
 		private ResultSet rs;
 	
-	private static MemberDao instance = new MemberDao();
+	private static DetailDao instance = new DetailDao();
 	
-		public static MemberDao getinstance() {
+		public static DetailDao getinstance() {
 			return instance;
 		}
 	
-	public MemberDao(){
+	public DetailDao(){
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bbs?serverTimezone=UTC", "root","1234");
@@ -29,22 +31,17 @@ public class MemberDao {
 		}
 	}
 	
-	// 메소드 : 회원 추가
-	public int setmember( Member member) {
+	// 메소드 : 주문 추가
+	public int setdetail( Order_detail order_detail) {
 		
-		String SQL = "INSERT INTO member VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO order_detail VALUES(?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getName());
-			pstmt.setString(4, member.getGender());
-			pstmt.setString(5, member.getBirth());
-			pstmt.setString(6, member.getMail());
-			pstmt.setString(7, member.getPhone());
-			pstmt.setString(8, member.getAddress());
-			pstmt.setString(9, member.getRegist_day());
+			pstmt.setInt(1, order_detail.getDetail_id());
+			pstmt.setInt(2, order_detail.getDetail_order_id());
+			pstmt.setInt(3, order_detail.getDetail_productID());
+			pstmt.setInt(4, order_detail.getDetail_quantity());
 			pstmt.executeUpdate();
 			return 1;	
 		}

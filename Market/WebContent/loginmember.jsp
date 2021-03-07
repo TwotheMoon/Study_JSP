@@ -57,6 +57,7 @@
 <body>
 
 	<%@include file ="menu.jsp" %>
+	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<div class="jumbotron">
 			<div class="container">

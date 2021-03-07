@@ -56,7 +56,7 @@
     	product.setManufacturer(manufacturer);
     	product.setCategory(category);
     	product.setPinstock(stock);
-    	product.setconditions(conditions);
+    	product.setConditions(conditions);
     	product.setFilename(filename);
     	product.setActivation(1);
     	

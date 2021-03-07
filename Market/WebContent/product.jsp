@@ -19,6 +19,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script type="text/javascript">
+	function addToCart() {
+		if(confirm("상품을 장바구니에 추가하시겠습니까?")){
+			addform.submit();
+		}else{
+			addform.reset();
+		}
+	}
+
+</script>
 
 	<%@include file ="menu.jsp" %>
 	
@@ -61,6 +71,13 @@
 							}
 						%>
 						<p> 상품 가격 : <%=product.getPprice() %>
+						<form name="addform" method="post" action="addcart.jsp?ProductID=<%=product.getProductID()%>">
+							<a href="#" class="btn btn-info" onclick="addToCart()">상품담기</a>
+							<a href="cartlist.jsp" class="btn btn-info">장바구니</a>
+							<a href="products.jsp" class="btn btn-info">상품목록</a>
+						</form>
+				
+					
 					</div>
 				</div>
 			</div>

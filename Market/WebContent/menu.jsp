@@ -48,8 +48,7 @@
     						<img src="image/basket1.jpg" > <span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
-    						<li><a href="logout.jsp">로그아웃</a>
-    						<li><a href="addmember.jsp">회원정보</a>
+    						<li><a href="cartlist.jsp">장바구니</a>
     					</ul>
     				</li>
     				<% 		
@@ -77,7 +76,7 @@
     					</a>
     					<ul class="dropdown-menu">
     						<li><a href="logout.jsp">로그아웃</a>
-    						<li><a href="addmember.jsp">회원정보</a>
+    						<li><a href="memberInfo.jsp">회원정보</a>
     					</ul>
     				</li>
    					<li class="dropdown">
@@ -86,8 +85,7 @@
     						<img src="image/basket1.jpg" > <span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
-    						<li><a href="logout.jsp">로그아웃</a>
-    						<li><a href="addmember.jsp">회원정보</a>
+    						<li><a href="cartlist.jsp">장바구니</a>
     					</ul>
     				</li>
    				</ul> 
@@ -108,7 +106,7 @@
     					</a>
     					<ul class="dropdown-menu">
     						<li><a href="logout.jsp">로그아웃</a>
-    						<li><a href="addmember.jsp">회원정보</a>
+    						<li><a href="memberInfo.jsp">회원정보</a>
     					</ul>
     				</li>
     				<li class="dropdown">
@@ -117,8 +115,7 @@
     						<img src="image/basket1.jpg" > <span class="caret"></span>
     					</a>
     					<ul class="dropdown-menu">
-    						<li><a href="logout.jsp">로그아웃</a>
-    						<li><a href="addmember.jsp">회원정보</a>
+    						<li><a href="cartlist.jsp">장바구니</a>
     					</ul>
     				</li>
    				</ul> 

@@ -121,7 +121,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2">상태</label>
 					<div class="col-sm-3">
-					<%if(product.getconditions().equals("New")) {
+					<%if(product.getConditions().equals("New")) {
 					%>	
 						<input type="radio" name="conditions" value="New" checked="checked"> 신제품
 						<input type="radio" name="conditions" value="Old"> 기존제품					

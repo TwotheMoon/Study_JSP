@@ -12,16 +12,7 @@ public class Product {
 	private String conditions;			// 신제품 or 기존제품
 	private String filename;			// 상품 이미지
 	private Integer activation; 		// 상품 활성화 여부
-	
-	public Product() {
-		
-	}
-	public Product(String productID, String pname, Integer pprice) {
-		this.productID = productID;
-		this.pname = pname;
-		this.pprice = pprice;
-	}
-	
+	private Integer quantity;			// 카트에 담은 개수
 	public String getProductID() {
 		return productID;
 	}
@@ -64,10 +55,10 @@ public class Product {
 	public void setPinstock(Integer pinstock) {
 		this.pinstock = pinstock;
 	}
-	public String getconditions() {
+	public String getConditions() {
 		return conditions;
 	}
-	public void setconditions(String conditions) {
+	public void setConditions(String conditions) {
 		this.conditions = conditions;
 	}
 	public String getFilename() {
@@ -82,6 +73,13 @@ public class Product {
 	public void setActivation(Integer activation) {
 		this.activation = activation;
 	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	
 
 
 }

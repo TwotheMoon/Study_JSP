@@ -133,7 +133,7 @@
 				<%
 					}
 				%>
-					<td><%=product.getconditions() %></td>
+					<td><%=product.getConditions() %></td>
 				<%
 					if(product.getActivation() == 1){
 				%>
