@@ -45,7 +45,8 @@
 		color: #908076;
 	}
 	.i4 .s2{
-		margin-left: 60px;
+		float: left;
+		margin-top: 5px;
 	}
 </style>
 </head>
@@ -122,8 +123,8 @@
 			<li class="i3"> 간식용 수제 초콜릿 </li>
 			<li class="i4">
 				<div>
-					<span class="s1">2013.03.10</span>
-					<span class="s2">좋아요 3 &#183; 추천 5</span>
+					<div class="s1">2013.03.10</div>
+					<div class="s2">좋아요 3 &#183; 추천 5</div>
 				</div>
 			</li>
 		</ul>
