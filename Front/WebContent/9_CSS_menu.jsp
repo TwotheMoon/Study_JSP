@@ -34,7 +34,7 @@
 		<li class="menulist"><a href="#"> 고객 센터 </a></li>
 		<li class="menulist"><a href="#"> 찾아 오시는 길 </a></li>
 		<li class="menulist"><a href="9_CSS_login.jsp"> 로그인 </a></li>
-		<li class="menulist"><a href="9_CSS_signin.jsp"> 회원가입 </a></li>
+		<li class="menulist"><a href="9_CSS_signup.jsp"> 회원가입 </a></li>
 	</ul>
 
 </body>
