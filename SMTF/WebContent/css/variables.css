@@ -1,0 +1,7 @@
+/* 색 변수 등록 */
+
+:root{
+    --bgcolor: #02343F;
+    --fontcolor: #F0EDCC;
+	--columnbgcolor: #FAF3EC;
+}

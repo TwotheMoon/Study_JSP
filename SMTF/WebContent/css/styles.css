@@ -1,0 +1,31 @@
+@import "reset.css";
+@import "variables.css";
+
+/* Components */
+
+	
+/* Screens */
+@import "screens/index.css";
+@import "screens/header.css";
+@import "screens/carousel.css";
+@import "screens/section.css";
+@import "screens/footer.css";
+
+
+/* 홈페이지 전체 css */
+#main{
+	color: var(--fontcolor);
+	font-family: 'paybooc-Bold';
+ 	display: flex;
+ 	flex-direction: column;
+ 	align-items: center;
+ 
+}
+
+/* 폰트 */
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
