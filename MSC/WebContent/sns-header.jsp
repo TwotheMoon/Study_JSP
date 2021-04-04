@@ -15,14 +15,13 @@
 </head>
 <body>
 
-	<header class="header-box">
-		<ul class="header-menu">
-			<li class="header-list header-logo"><a href="index.jsp"><img src="img/MSC_logo.png"> </a></li>
-			<li class="header-list header-about"><a href="aboutus.jsp"> 회사소개</a></li>
-			<li class="header-list header-signup"><a href="signup.jsp">회원가입</a></li>
-			<li class="header-list header-careers">커리어</li>
-			<li class="header-list header-sponsors">스폰서</li>
-			<li class="header-list header-who-need-this">Who need this?</li>
+
+	<header class="sns-header-box">
+		<ul class="sns-header-menu">
+			<li class="sns-header-list sns-header-logo "><a href="sns-index.jsp"><img src="img/MSC_logo.png"> </a></li>
+			<li class="sns-header-list sns-header-allfeed "><a href="all-feed.jsp"> <i class="far fa-users fa-2x"></i></a></li>
+			<li class="sns-header-list sns-header-userfeed"><a href="user-feed.jsp"><i class="far fa-user fa-2x"></i></a></li>
+			<li class="sns-header-list sns-header-setting"><a href="setting.jsp"><i class="far fa-cog fa-2x"></i></a></li>
 			<li class="menu-btn">
 				<i class="fas fa-bars fa-2x"></i>
 			</li>
@@ -32,14 +31,13 @@
 			  	<div onclick="history.back();" class="close">
 			  		<i class="fad fa-times-circle fa-2x"></i>
 			  	</div>
-			  	<div class="menu-login menu-contents"><a href="login.jsp">로그인</a> <!-- 로그인시 세션 아이디 출력 --> </div>
-			  	<div class="menu-signup menu-contents"><a href="signup.jsp">회원가입</a></div>
+			  	<div class="menu-login menu-contents"><a href="login.jsp">로그아웃</a> <!-- 로그인시 세션 아이디 출력 --> </div>
 			  	<div class="menu-questions menu-contents"> 문의사항 </div>
 			  	<!-- ------------------------------------------------- -->
 			  	<div class="menu-about menu-info"><a href="aboutus.jsp"> 회사소개</a> </div>
 			  	<div class="menu-careers menu-info"> 커리어 </div>
 			  	<div class="menu-sponsors menu-info"> 스폰서 </div>
-			  	<div class="menu-snsindex menu-info"> <a href="sns-index.jsp"> 모바일 화면으로 보기</a> </div>
+			  	<div class="menu-index menu-info"> <a href="index.jsp"> 웹사이트 홈으로</a> </div>
 			</li>
 		</ul>		
     </header>
