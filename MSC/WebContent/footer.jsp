@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, initial-scale=1.0" />
-<title> Maxrava | 웨이트너를 위한 소셜 네트워크 </title>
 <!-- 제이쿼리 임포트 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title> Muscle Challenge | 웨이트너를 위한 소셜 네트워크 </title>
 </head>
 <body id="footer-main">
 
@@ -26,8 +26,8 @@
 			<li>광고안내</li>
 		</ul>
 		<div class="footer-column2">
-			<div class="footer-column2_logo"> 로고 </div>
-			<div class="footer-column2_contents1"> Maxrava(주) | 대표이사 : 이준호,이더문 
+			<div class="footer-column2_logo"> <img src="img/MSC_logo.png"> </div>
+			<div class="footer-column2_contents1"> Muscle Challenge(주) | 대표이사 : 이준호,이더문 
 				<br> 서울 강남구 영동대로 513
 				<br> 사업자 등록번호 : 123-55-00213
 				<br> 통신판매업신고 : 2021-서울역삼-0932
@@ -36,7 +36,7 @@
 				365고객센터 | 전자금융거래분쟁처리담당
 				<br><span>1577-7211</span>
 				<br>서울 강남구 영동대로 513
-				<br>help@maxlava.com
+				<br>help@mMuscleChallenge.com
 			</div>
 			<div class="footer-column2_contents3">
 				개인정보보호 관리체계 인증

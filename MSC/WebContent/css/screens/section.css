@@ -1,0 +1,107 @@
+.contents-box{
+	width: 1100px;
+	height: 650px;
+	font-family: 'paybooc-Bold';
+	background-color: var(--columnbgcolor);
+	margin: 30px 0px 50px 0px;
+}
+.contents-box_title{
+	color: var(--bgcolor);	
+	font-size: 25px;
+	font-weight: bold;
+	padding: 40px 0px 0px 40px;
+	
+}
+.column1{
+	width: 250px;
+	height: 200px;
+	margin: 40px 55px;
+	float: left;
+	
+}
+.column1-num{
+	font-size: 20px;
+	color: orange;
+}
+.column1-title{
+	font-size: 25px;
+	color: black;
+	margin-top: 10px;
+}
+.column1-text{
+	font-size: 13px;
+	color: black;
+	margin-top: 10px;
+	line-height: 20px;
+}
+
+.column2{
+	width: 1200px;
+	height: 500px;
+	float: left;
+	margin-bottom: 100px;
+}
+.column2-imgbox{
+	width: 480px;
+	height: 320px;
+	position: relative;
+	right: -20px;
+}
+.column2-img{
+	width: 480px;
+	height: 320px;
+	margin: 55px 0px;
+	padding-right: 20px;
+
+}
+
+.column2-textbox{
+	width: 300px;
+	height: 250px;
+	color: var(--bgcolor);
+	background-color: var(--columnbgcolor);
+	float: right;
+	position: relative;
+	top: -120px;
+	right: 170px;
+	line-height: 30px;
+	padding: 30px 30px;
+}
+.column2-textbox span{
+	font-size: 25px;
+}
+.column3{
+	width: 1200px;
+	height: 500px;
+	float: left;
+	margin-bottom: 100px;
+}
+.column3-imgbox{
+	width: 480px;
+	height: 320px;
+	position: relative;
+	right: -550px;
+}
+.column3-img{
+	width: 480px;
+	height: 320px;
+	margin: 55px 0px;
+	padding-right: 20px;
+
+}
+
+.column3-textbox{
+	width: 300px;
+	height: 250px;
+	color: var(--bgcolor);
+	background-color: var(--columnbgcolor);
+	float: right;
+	position: relative;
+	top: -120px;
+	right: 820px;
+	line-height: 30px;
+	padding: 30px 30px;
+}
+.column3-textbox span{
+	font-size: 25px;
+}

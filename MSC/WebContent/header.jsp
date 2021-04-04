@@ -9,33 +9,34 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-iKbFRxucmOHIcpWdX9NTZ5WETOPm0Goy0WmfyNcl52qSYtc2Buk0NCe6jU1sWWNB" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, initial-scale=1.0" />
-<title> Maxrava | 웨이트너를 위한 소셜 네트워크 </title>
 <!-- 제이쿼리 임포트 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title> Muscle Challenge | 웨이트너를 위한 소셜 네트워크 </title>
 </head>
 <body>
 
 	<header class="header-box">
 		<ul class="header-menu">
-			<li class="header-list header-logo">로고</li>
-			<li class="header-list header-about">회사소개</li>
-			<li class="header-list header-signup">회원가입</li>
+			<li class="header-list header-logo"><a href="index.jsp"><img src="img/MSC_logo.png"> </a></li>
+			<li class="header-list header-about"><a href="aboutus.jsp"> 회사소개</a></li>
+			<li class="header-list header-signup"><a href="signup.jsp">회원가입</a></li>
 			<li class="header-list header-careers">커리어</li>
-				
+			<li class="header-list header-sponsors">스폰서</li>
+			<li class="header-list header-who-need-this">Who need this?</li>
 			<li class="menu-btn">
 				<i class="fas fa-bars fa-2x"></i>
 			</li>
 			<li onclick="history.back();" class="page_cover"></li>
 			<li id="menu">
-			  	<h3 class="menu-title"> MENU </h3>
+			  	<h3 class="menu-title"><a href="index.jsp"><img src="img/MSC_logo.png"></a> </h3>
 			  	<div onclick="history.back();" class="close">
 			  		<i class="fad fa-times-circle fa-2x"></i>
 			  	</div>
-			  	<div class="menu-login menu-contents"> 로그인 <!-- 로그인시 세션 아이디 출력 --> </div>
-			  	<div class="menu-signup menu-contents"> 회원가입 </div>
+			  	<div class="menu-login menu-contents"><a href="login.jsp">로그인</a> <!-- 로그인시 세션 아이디 출력 --> </div>
+			  	<div class="menu-signup menu-contents"><a href="signup.jsp">회원가입</a></div>
 			  	<div class="menu-questions menu-contents"> 문의사항 </div>
 			  	<!-- ------------------------------------------------- -->
-			  	<div class="menu-about menu-info"> 회사소개 </div>
+			  	<div class="menu-about menu-info"><a href="aboutus.jsp"> 회사소개</a> </div>
 			  	<div class="menu-careers menu-info"> 커리어 </div>
 			  	<div class="menu-sponsors menu-info"> 스폰서 </div>
 			</li>

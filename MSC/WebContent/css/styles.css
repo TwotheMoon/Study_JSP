@@ -10,7 +10,9 @@
 @import "screens/carousel.css";
 @import "screens/section.css";
 @import "screens/footer.css";
-
+@import "screens/signup.css";
+@import "screens/login.css";
+@import "screens/aboutus.css";
 
 /* 홈페이지 전체 css */
 #main{

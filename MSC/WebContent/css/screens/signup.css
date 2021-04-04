@@ -1,0 +1,74 @@
+.signup-box{
+	width: 800px;
+	height: 1050px;
+	background-color: white;
+	margin: 150px 0px; 
+	border: solid 2px var(--bgcolor); 
+	border-radius: 25px;
+	background-color: var(--bgcolor);
+}
+.signup-box h2{
+	margin: 25px 0px 10px 25px;
+	font-size: 25px;
+	color: var(--fontcolor);
+}
+.signup-table{
+	margin: 10px 0px 0px 47px;
+	background-color: var(--columnbgcolor);
+	width: 700px;
+	height: 900px;
+	border-radius: 25px;
+	color: black;
+}
+.signup-table label,
+.signup-table div{
+	margin: 30px 0px 20px 20px;
+	
+}
+.signup-id-input{
+	margin-left: 55px;
+	margin-top: 50px;
+	height: 20px;
+}
+.signup-pw-input,
+.signup-birth-input,
+.signup-phone-input,
+.signup-school-input,
+.signup-weight-input{
+	margin-left: 40px;
+	height: 20px;
+}
+.signup-pwConfirm-input{
+	margin-left: 6px;
+	height: 20px;
+}
+.signup-name-input,
+.signup-gender-input,
+.signup-address-input1{
+	margin-left: 70px;
+	height: 20px;
+}
+.signup-email-input,
+.signup-workplace-input{
+	margin-left: 55px;
+	height: 20px;
+}
+.signup-address-input2{
+	margin-left: 200px;
+	height: 20px;
+}
+
+.signup-submit{
+	margin: 30px 30px 0px 200px;
+	background-color: var(--bgcolor);
+	color: var(--fontcolor);
+}
+.signup-submit,
+.signup-cancle{
+	width: 110px;
+	height: 35px;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 15px;
+}
+

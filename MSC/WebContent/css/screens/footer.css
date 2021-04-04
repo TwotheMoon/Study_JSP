@@ -28,6 +28,14 @@
 	margin-top: 35px;
 	padding-left: 200px;
 }
+.footer-column2_logo{
+	width: 130px;
+	display: inline;
+	position: relative;
+	left: -1080px;
+	bottom: -35px;
+	
+}
 .footer-column2_contents1{
 	float: left;
 	margin-left: 70px;
