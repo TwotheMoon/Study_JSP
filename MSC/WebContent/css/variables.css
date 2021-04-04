@@ -1,7 +1,12 @@
-/* 색 변수 등록 */
+/* 색 변수  */
 
 :root{
     --bgcolor: #02343F;
     --fontcolor: #F0EDCC;
 	--columnbgcolor: #FAF3EC;
+}
+
+/* 텍스트 자간 변수*/
+:root{
+	--line-height: 20px;
 }
